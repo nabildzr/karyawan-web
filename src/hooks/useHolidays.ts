@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useHolidays.ts
+// & This file defines frontend UI or logic for useHolidays.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useHolidays.ts.
+
 import { useCallback, useState } from "react";
 import type { GetAllHolidaysParams } from "../services/holidays.service";
 import { holidaysService } from "../services/holidays.service";

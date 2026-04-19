@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/AuthPages/SignUp.tsx
+// & This file defines frontend UI or logic for SignUp.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk SignUp.tsx.
+
 import PageMeta from "../../components/common/PageMeta";
 import AuthLayout from "./AuthPageLayout";
 import SignUpForm from "../../components/auth/SignUpForm";

@@ -1,0 +1,1 @@
+export type ConditionValueType = "time" | "number" | "boolean";

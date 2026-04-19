@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ecommerce/MonthlyTarget.tsx
+// & This file defines frontend UI or logic for MonthlyTarget.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk MonthlyTarget.tsx.
+
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useState } from "react";

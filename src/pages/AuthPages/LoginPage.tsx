@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/AuthPages/LoginPage.tsx
+// & This file defines frontend UI or logic for LoginPage.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk LoginPage.tsx.
+
 // ============================================================
 // LOGIN PAGE
 // Halaman login dengan NIP + Password

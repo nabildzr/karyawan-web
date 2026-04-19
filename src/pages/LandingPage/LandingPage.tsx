@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/LandingPage/LandingPage.tsx
+// & This file defines frontend UI or logic for LandingPage.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk LandingPage.tsx.
+
 import { Link } from "react-router";
 
 // ── Navbar ────────────────────────────────────────────────────

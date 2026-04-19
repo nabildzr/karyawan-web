@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/Select.tsx
+// & This file defines frontend UI or logic for Select.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Select.tsx.
+
 import { useState } from "react";
 
 interface Option {

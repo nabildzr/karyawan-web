@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ecommerce/DemographicCard.tsx
+// & This file defines frontend UI or logic for DemographicCard.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk DemographicCard.tsx.
+
 import { useState } from "react";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";

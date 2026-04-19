@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/button/Button.tsx
+// & This file defines frontend UI or logic for Button.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Button.tsx.
+
 import { ReactNode } from "react";
 
 interface ButtonProps {

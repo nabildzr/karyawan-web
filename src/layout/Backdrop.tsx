@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/layout/Backdrop.tsx
+// & This file defines frontend UI or logic for Backdrop.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Backdrop.tsx.
+
 import { useSidebar } from "../context/SidebarContext";
 
 const Backdrop: React.FC = () => {

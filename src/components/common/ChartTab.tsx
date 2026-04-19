@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/common/ChartTab.tsx
+// & This file defines frontend UI or logic for ChartTab.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk ChartTab.tsx.
+
 import { useState } from "react";
 
 const ChartTab: React.FC = () => {

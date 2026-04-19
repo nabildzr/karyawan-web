@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/UserProfile/UserInfoCard.tsx
+// & This file defines frontend UI or logic for UserInfoCard.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk UserInfoCard.tsx.
+
 import { useModal } from "../../hooks/useModal";
 import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";

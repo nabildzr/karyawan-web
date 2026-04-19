@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/input/FileInput.tsx
+// & This file defines frontend UI or logic for FileInput.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk FileInput.tsx.
+
 import { FC } from "react";
 
 interface FileInputProps {

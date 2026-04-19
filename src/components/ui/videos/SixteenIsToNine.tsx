@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/videos/SixteenIsToNine.tsx
+// & This file defines frontend UI or logic for SixteenIsToNine.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk SixteenIsToNine.tsx.
+
 export default function SixteenIsToNine() {
   return (
     <div className="aspect-4/3 overflow-hidden rounded-lg">

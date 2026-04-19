@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/Absensi/AbsensiManual.tsx
+// & This file defines frontend UI or logic for AbsensiManual.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk AbsensiManual.tsx.
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import PageBreadcrumb from "../../../components/common/PageBreadCrumb";

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ProtectedRoute.tsx
+// & This file defines frontend UI or logic for ProtectedRoute.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk ProtectedRoute.tsx.
+
 // & ============================================================
 // % PROTECTED ROUTE
 // % Guard komponen buat protect halaman berdasarkan:

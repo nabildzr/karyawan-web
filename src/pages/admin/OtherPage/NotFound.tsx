@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/OtherPage/NotFound.tsx
+// & This file defines frontend UI or logic for NotFound.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk NotFound.tsx.
+
 import { Link } from "react-router";
 import GridShape from "../../../components/common/GridShape";
 import PageMeta from "../../../components/common/PageMeta";

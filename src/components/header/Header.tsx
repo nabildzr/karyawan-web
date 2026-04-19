@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/header/Header.tsx
+// & This file defines frontend UI or logic for Header.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Header.tsx.
+
 import { useState } from "react";
 import { Link } from "react-router";
 import { ThemeToggleButton } from "../common/ThemeToggleButton";

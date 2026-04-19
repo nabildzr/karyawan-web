@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/layout/SidebarWidget.tsx
+// & This file defines frontend UI or logic for SidebarWidget.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk SidebarWidget.tsx.
+
 export default function SidebarWidget() {
   return (
     <div

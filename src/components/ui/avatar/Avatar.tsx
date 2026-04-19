@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/avatar/Avatar.tsx
+// & This file defines frontend UI or logic for Avatar.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Avatar.tsx.
+
 interface AvatarProps {
   src: string; // URL of the avatar image
   alt?: string; // Alt text for the avatar

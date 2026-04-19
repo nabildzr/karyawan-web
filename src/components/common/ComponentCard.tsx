@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/common/ComponentCard.tsx
+// & This file defines frontend UI or logic for ComponentCard.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk ComponentCard.tsx.
+
 interface ComponentCardProps {
   title: string;
   children: React.ReactNode;

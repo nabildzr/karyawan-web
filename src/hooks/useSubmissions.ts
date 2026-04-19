@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useSubmissions.ts
+// & This file defines frontend UI or logic for useSubmissions.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useSubmissions.ts.
+
 import { useCallback, useRef, useState } from "react";
 import { submissionsService } from "../services/submissions.service";
 import type {

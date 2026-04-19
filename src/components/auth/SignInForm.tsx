@@ -1,6 +1,11 @@
+// * Frontend module: karyawan-web/src/components/auth/SignInForm.tsx
+// & This file defines frontend UI or logic for SignInForm.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk SignInForm.tsx.
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import { useAuthContext } from "../../context/AuthContext";
 import { useLogin } from "../../hooks/useAuth";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../../icons";
 import { LoginRequest } from "../../types/auth.types";
@@ -26,17 +31,21 @@ export default function SignInForm() {
     login({ ...data, clientType: "WEB" });
   }
 
+  const { canAccessAdminPortal } = useAuthContext();
+
   return (
     <div className="flex flex-col flex-1">
-      <div className="w-full max-w-md pt-10 mx-auto">
-        <Link
-          to="/admin"
-          className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-        >
-          <ChevronLeftIcon className="size-5" />
-          Back to dashboard
-        </Link>
-      </div>
+      {canAccessAdminPortal ?? (
+        <div className="w-full max-w-md pt-10 mx-auto">
+          <Link
+            to="/admin"
+            className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+          >
+            <ChevronLeftIcon className="size-5" />
+            Back to dashboard
+          </Link>
+        </div>
+      )}
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
         <div>
           <div className="mb-5 sm:mb-8">
@@ -139,10 +148,10 @@ export default function SignInForm() {
 
                 <div className="flex items-center justify-between">
                   <Link
-                    to="/reset-password"
+                    to="/admin/forgot-password"
                     className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
                   >
-                    Lupa password? Hubungi admin atau HRD perusahaan kamu.
+                    Lupa password? Reset password di sini.
                   </Link>
                 </div>
                 <div>

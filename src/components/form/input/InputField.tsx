@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/input/InputField.tsx
+// & This file defines frontend UI or logic for InputField.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk InputField.tsx.
+
 import { forwardRef } from "react";
 import type React from "react";
 

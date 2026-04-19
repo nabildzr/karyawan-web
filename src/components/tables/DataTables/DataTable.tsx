@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/tables/DataTables/DataTable.tsx
+// & This file defines frontend UI or logic for DataTable.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk DataTable.tsx.
+
 import { useMemo, useState } from "react";
 import {
   Table,

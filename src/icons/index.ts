@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/icons/index.ts
+// & This file defines frontend UI or logic for index.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk index.ts.
+
 import { ReactComponent as PlusIcon } from "./plus.svg?react";
 import { ReactComponent as CloseIcon } from "./close.svg?react";
 import { ReactComponent as BoxIcon } from "./box.svg?react";

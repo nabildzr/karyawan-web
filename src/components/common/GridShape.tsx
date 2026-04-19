@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/common/GridShape.tsx
+// & This file defines frontend UI or logic for GridShape.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk GridShape.tsx.
+
 export default function GridShape() {
   return (
     <>

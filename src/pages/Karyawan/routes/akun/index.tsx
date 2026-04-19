@@ -2,6 +2,7 @@
 
 import { getAkunPageDescription, getAkunProfileHint } from "../../utils/akun/content";
 import AkunHeader from "./components/AkunHeader";
+import AkunNotificationSettings from "./components/AkunNotificationSettings";
 import AkunProfileCard from "./components/AkunProfileCard";
 
 // & This function component/helper defines KaryawanAkunPage behavior for this route file.
@@ -13,6 +14,7 @@ const KaryawanAkunPage = () => {
     <div className="min-h-full bg-gray-50 px-4 pb-28 pt-6">
       <AkunHeader title="Akun" description={getAkunPageDescription()} />
       <AkunProfileCard title="Profil karyawan" hint={getAkunProfileHint()} />
+      <AkunNotificationSettings />
     </div>
   );
 };

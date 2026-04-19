@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/input/Checkbox.tsx
+// & This file defines frontend UI or logic for Checkbox.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Checkbox.tsx.
+
 import type React from "react";
 
 interface CheckboxProps {

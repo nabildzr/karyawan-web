@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/header/CommandPaletteModal.tsx
+// & This file defines frontend UI or logic for CommandPaletteModal.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk CommandPaletteModal.tsx.
+
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 

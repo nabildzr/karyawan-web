@@ -4,8 +4,15 @@
 import type {
   ApiResponse,
   AuthUser,
+  ForgotPasswordRequest,
+  ForgotPasswordResponse,
   LoginRequest,
   LoginResponse,
+  ResetPasswordRequest,
+  SendCodeRequest,
+  SendCodeResponse,
+  VerifyCodeRequest,
+  VerifyCodeResponse,
 } from "../types/auth.types";
 
 // & Resolve backend base URL from env.
@@ -93,4 +100,61 @@ export async function refreshToken(): Promise<void> {
   return apiFetch<void>("/auth/refresh", {
     method: "POST",
   });
+}
+
+// & Request forgot password flow by NIP or email.
+// % Minta alur lupa password berdasarkan NIP atau email.
+export async function forgotPassword(
+  payload: ForgotPasswordRequest,
+): Promise<ForgotPasswordResponse> {
+  const response = await apiFetch<ApiResponse<ForgotPasswordResponse>>(
+    "/auth/forgot-password",
+    {
+      method: "POST",
+      body: JSON.stringify(payload),
+    },
+  );
+
+  return response.data;
+}
+
+// & Send forgot-password verification code.
+// % Kirim kode verifikasi untuk lupa password.
+export async function sendCode(
+  payload: SendCodeRequest,
+): Promise<SendCodeResponse> {
+  const response = await apiFetch<ApiResponse<SendCodeResponse>>(
+    "/auth/send-code",
+    {
+      method: "POST",
+      body: JSON.stringify(payload),
+    },
+  );
+
+  return response.data;
+}
+
+// & Reset password with reset token.
+// % Reset password menggunakan token reset.
+export async function resetPassword(payload: ResetPasswordRequest): Promise<void> {
+  await apiFetch<ApiResponse<null>>("/auth/reset-password", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+// & Verify reset code before password reset.
+// % Verifikasi kode reset sebelum reset password.
+export async function verifyCode(
+  payload: VerifyCodeRequest,
+): Promise<VerifyCodeResponse> {
+  const response = await apiFetch<ApiResponse<VerifyCodeResponse>>(
+    "/auth/verify-code",
+    {
+      method: "POST",
+      body: JSON.stringify(payload),
+    },
+  );
+
+  return response.data;
 }

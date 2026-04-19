@@ -116,6 +116,60 @@ export interface LoginRequest {
 // % Bentuk response login.
 export type LoginResponse = AuthUser;
 
+// & Payload for POST /auth/forgot-password.
+// % Payload untuk POST /auth/forgot-password.
+export interface ForgotPasswordRequest {
+  identifier: string;
+}
+
+// & Payload for POST /auth/send-code.
+// % Payload untuk POST /auth/send-code.
+export interface SendCodeRequest {
+  identifier: string;
+}
+
+// & Forgot password response payload.
+// % Payload response lupa password.
+export interface ForgotPasswordResponse {
+  expiresInMinutes: number;
+  resetToken?: string;
+  resetUrl?: string;
+  verificationCode?: string;
+  mailDispatched?: boolean;
+}
+
+// & Send code response payload.
+// % Payload response kirim kode.
+export interface SendCodeResponse {
+  expiresInMinutes: number;
+  resetToken?: string;
+  resetUrl?: string;
+  verificationCode?: string;
+  mailDispatched?: boolean;
+}
+
+// & Payload for POST /auth/reset-password.
+// % Payload untuk POST /auth/reset-password.
+export interface ResetPasswordRequest {
+  token: string;
+  code: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
+// & Payload for POST /auth/verify-code.
+// % Payload untuk POST /auth/verify-code.
+export interface VerifyCodeRequest {
+  token: string;
+  code: string;
+}
+
+// & Verify code response payload.
+// % Payload response verifikasi kode.
+export interface VerifyCodeResponse {
+  isValid: boolean;
+}
+
 // & AuthContext state shape.
 // % Bentuk state AuthContext.
 export interface AuthState {

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/common/ThemeTogglerTwo.tsx
+// & This file defines frontend UI or logic for ThemeTogglerTwo.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk ThemeTogglerTwo.tsx.
+
 import { useTheme } from "../../context/ThemeContext";
 
 export default function ThemeTogglerTwo() {

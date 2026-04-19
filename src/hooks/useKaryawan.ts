@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useKaryawan.ts
+// & This file defines frontend UI or logic for useKaryawan.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useKaryawan.ts.
+
 import { useCallback, useState } from "react";
 import type { GetAllEmployeesParams } from "../services/karyawan.service";
 import { karyawanService } from "../services/karyawan.service";

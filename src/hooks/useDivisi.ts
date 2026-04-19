@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useDivisi.ts
+// & This file defines frontend UI or logic for useDivisi.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useDivisi.ts.
+
 import { useCallback, useEffect, useState } from "react";
 import { divisiService } from "../services/divisi.service";
 import type {

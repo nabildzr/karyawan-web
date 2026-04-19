@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/header/UserDropdown.tsx
+// & This file defines frontend UI or logic for UserDropdown.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk UserDropdown.tsx.
+
 import { useState } from "react";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";

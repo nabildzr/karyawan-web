@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/Penilaian/LaporanIndividu.tsx
+// & This file defines frontend UI or logic for LaporanIndividu.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk LaporanIndividu.tsx.
+
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import PageBreadcrumb from "../../../components/common/PageBreadCrumb";

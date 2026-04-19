@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/MultiSelect.tsx
+// & This file defines frontend UI or logic for MultiSelect.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk MultiSelect.tsx.
+
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
 

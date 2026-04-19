@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/MasterDataHierarki/Jabatan.tsx
+// & This file defines frontend UI or logic for Jabatan.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Jabatan.tsx.
+
 import { useState } from "react";
 import { toast } from "sonner";
 import ComponentCard from "../../../components/common/ComponentCard";

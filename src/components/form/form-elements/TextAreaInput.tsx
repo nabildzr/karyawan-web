@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/form-elements/TextAreaInput.tsx
+// & This file defines frontend UI or logic for TextAreaInput.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk TextAreaInput.tsx.
+
 import { useState } from "react";
 import ComponentCard from "../../common/ComponentCard";
 import TextArea from "../input/TextArea";

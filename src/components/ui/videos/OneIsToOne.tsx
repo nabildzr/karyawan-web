@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/videos/OneIsToOne.tsx
+// & This file defines frontend UI or logic for OneIsToOne.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk OneIsToOne.tsx.
+
 export default function OneIsToOne() {
   return (
     <div className="overflow-hidden rounded-lg aspect-square">

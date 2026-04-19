@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/MasterDataPengguna/ManajemenWajah.tsx
+// & This file defines frontend UI or logic for ManajemenWajah.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk ManajemenWajah.tsx.
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import ComponentCard from "../../../components/common/ComponentCard";

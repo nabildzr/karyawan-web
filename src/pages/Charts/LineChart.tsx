@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/Charts/LineChart.tsx
+// & This file defines frontend UI or logic for LineChart.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk LineChart.tsx.
+
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import ComponentCard from "../../components/common/ComponentCard";
 import LineChartOne from "../../components/charts/line/LineChartOne";

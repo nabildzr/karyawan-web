@@ -1,0 +1,1 @@
+export { useAturanPoinPage } from "./useAturanPoinPage";

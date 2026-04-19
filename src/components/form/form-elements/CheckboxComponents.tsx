@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/form-elements/CheckboxComponents.tsx
+// & This file defines frontend UI or logic for CheckboxComponents.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk CheckboxComponents.tsx.
+
 import { useState } from "react";
 import ComponentCard from "../../common/ComponentCard";
 import Checkbox from "../input/Checkbox";

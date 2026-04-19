@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useWorkingSchedules.ts
+// & This file defines frontend UI or logic for useWorkingSchedules.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useWorkingSchedules.ts.
+
 import { useCallback, useState } from "react";
 import { workingSchedulesService } from "../services/workingSchedules.service";
 import type {

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useRbac.ts
+// & This file defines frontend UI or logic for useRbac.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useRbac.ts.
+
 import { useCallback, useState } from "react";
 import {
   rbacService,

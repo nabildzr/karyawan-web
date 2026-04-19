@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/form-elements/RadioButtons.tsx
+// & This file defines frontend UI or logic for RadioButtons.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk RadioButtons.tsx.
+
 import { useState } from "react";
 import ComponentCard from "../../common/ComponentCard";
 import Radio from "../input/Radio";

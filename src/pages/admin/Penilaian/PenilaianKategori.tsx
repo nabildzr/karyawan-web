@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/Penilaian/PenilaianKategori.tsx
+// & This file defines frontend UI or logic for PenilaianKategori.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk PenilaianKategori.tsx.
+
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import ComponentCard from "../../../components/common/ComponentCard";

@@ -1,0 +1,1 @@
+export type DashboardTabKey = "rules" | "marketplace" | "leaderboard";

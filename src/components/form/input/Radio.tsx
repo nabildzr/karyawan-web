@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/input/Radio.tsx
+// & This file defines frontend UI or logic for Radio.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Radio.tsx.
+
 interface RadioProps {
   id: string; // Unique ID for the radio button
   name: string; // Radio group name

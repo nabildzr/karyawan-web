@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/tables/BasicTables/BasicTableOne.tsx
+// & This file defines frontend UI or logic for BasicTableOne.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk BasicTableOne.tsx.
+
 import {
   Table,
   TableBody,

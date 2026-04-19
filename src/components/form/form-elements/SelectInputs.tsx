@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/form-elements/SelectInputs.tsx
+// & This file defines frontend UI or logic for SelectInputs.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk SelectInputs.tsx.
+
 import { useState } from "react";
 import ComponentCard from "../../common/ComponentCard";
 import Label from "../Label";

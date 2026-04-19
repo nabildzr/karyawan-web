@@ -163,6 +163,11 @@ const KaryawanHomePage = () => {
       return;
     }
 
+    if (title === "Leaderboard") {
+      navigate("/karyawan/leaderboard");
+      return;
+    }
+
     if (title === "Review Saya") {
       navigate("/karyawan/review");
       return;

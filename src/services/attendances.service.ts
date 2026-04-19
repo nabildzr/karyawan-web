@@ -86,7 +86,7 @@ const buildAttendanceActionForm = (payload: AttendanceActionPayload) => {
   // ?   "deviceInfo": "value",
   // ?   "timezone": "value"
   // ? }
- 
+
   return form;
 };
 
@@ -96,7 +96,9 @@ export const attendancesService = {
 
   // & Get today attendance context.
   // % Ambil konteks absensi hari ini.
-  getTodayContext: async (timezone = "Asia/Jakarta"): Promise<TodayAttendanceContext> => {
+  getTodayContext: async (
+    timezone = "Asia/Jakarta",
+  ): Promise<TodayAttendanceContext> => {
     const res = await apiClient.get<ApiResponse<TodayAttendanceContext>>(
       "/attendances/today-context",
       { params: { timezone } },
@@ -115,6 +117,15 @@ export const attendancesService = {
     const res = await apiClient.get<ApiResponse<MyAttendanceHistoryData>>(
       "/attendances/history",
       { params },
+    );
+    return res.data.data;
+  },
+
+  // & Get own attendance detail by attendance id.
+  // % Ambil detail absensi pribadi berdasarkan attendance id.
+  getMyById: async (id: string): Promise<AttendanceRecord> => {
+    const res = await apiClient.get<ApiResponse<AttendanceRecord>>(
+      `/attendances/history/${id}`,
     );
     return res.data.data;
   },
@@ -195,7 +206,9 @@ export const attendancesService = {
 
   // & Create manual attendance record.
   // % Buat catatan absensi manual.
-  createManual: async (data: ManualAttendanceInput): Promise<AttendanceRecord> => {
+  createManual: async (
+    data: ManualAttendanceInput,
+  ): Promise<AttendanceRecord> => {
     const res = await apiClient.post<ApiResponse<AttendanceRecord>>(
       "/attendances/manual",
       data,
@@ -205,7 +218,10 @@ export const attendancesService = {
 
   // & Correct attendance record by id.
   // % Koreksi absensi berdasarkan id.
-  correct: async (id: string, data: CorrectAttendanceInput): Promise<AttendanceRecord> => {
+  correct: async (
+    id: string,
+    data: CorrectAttendanceInput,
+  ): Promise<AttendanceRecord> => {
     const res = await apiClient.put<ApiResponse<AttendanceRecord>>(
       `/attendances/admin/correct/${id}`,
       data,
@@ -221,7 +237,10 @@ export const attendancesService = {
       responseType: "blob",
     });
     const blob = new Blob([res.data as BlobPart], {
-      type: params.format === "csv" ? "text/csv" : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      type:
+        params.format === "csv"
+          ? "text/csv"
+          : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

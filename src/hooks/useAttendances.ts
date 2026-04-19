@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useAttendances.ts
+// & This file defines frontend UI or logic for useAttendances.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useAttendances.ts.
+
 import { useCallback, useRef, useState } from "react";
 import { attendancesService } from "../services/attendances.service";
 import type {

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/MasterDataHierarki/Divisi.tsx
+// & This file defines frontend UI or logic for Divisi.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Divisi.tsx.
+
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";

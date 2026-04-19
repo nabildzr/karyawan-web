@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/form-elements/DefaultInputs.tsx
+// & This file defines frontend UI or logic for DefaultInputs.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk DefaultInputs.tsx.
+
 import { useState } from "react";
 import ComponentCard from "../../common/ComponentCard";
 import Label from "../Label";

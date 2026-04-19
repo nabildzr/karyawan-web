@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/layout/AppHeader.tsx
+// & This file defines frontend UI or logic for AppHeader.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk AppHeader.tsx.
+
 import { useEffect, useState } from "react";
 
 import { Link } from "react-router";

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/charts/bar/BarChartOne.tsx
+// & This file defines frontend UI or logic for BarChartOne.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk BarChartOne.tsx.
+
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 

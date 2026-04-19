@@ -1,0 +1,1 @@
+export type TimeFilterKey = "all" | "30d";

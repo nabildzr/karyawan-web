@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ecommerce/CountryMap.tsx
+// & This file defines frontend UI or logic for CountryMap.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk CountryMap.tsx.
+
 // react plugin for creating vector maps
 import { VectorMap } from "@react-jvectormap/core";
 import { worldMill } from "@react-jvectormap/world";

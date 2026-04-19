@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/UserProfiles.tsx
+// & This file defines frontend UI or logic for UserProfiles.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk UserProfiles.tsx.
+
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import UserMetaCard from "../../components/UserProfile/UserMetaCard";
 import UserInfoCard from "../../components/UserProfile/UserInfoCard";

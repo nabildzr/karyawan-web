@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/common/PageMeta.tsx
+// & This file defines frontend UI or logic for PageMeta.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk PageMeta.tsx.
+
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
 const PageMeta = ({

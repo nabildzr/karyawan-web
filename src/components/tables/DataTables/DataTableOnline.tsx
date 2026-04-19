@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/tables/DataTables/DataTableOnline.tsx
+// & This file defines frontend UI or logic for DataTableOnline.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk DataTableOnline.tsx.
+
 import { useEffect, useRef, useState } from "react";
 import {
   Table,

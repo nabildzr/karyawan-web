@@ -1,6 +1,11 @@
 // * This file defines route module logic for src/pages/Karyawan/routes/layout/index.tsx.
 
-import { NavLink, Outlet, useLocation } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useRef } from "react";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router";
+import { toast } from "sonner";
+import NotificationPermissionBanner from "../../../../components/Notifications/NotificationPermissionBanner";
+import { notificationsService } from "../../../../services/notifications.service";
 import { NAV_ITEMS } from "../../utils/layout/constants";
 
 // & This function component/helper defines KaryawanLayoutPage behavior for this route file.
@@ -8,8 +13,62 @@ import { NAV_ITEMS } from "../../utils/layout/constants";
 const KaryawanLayoutPage = () => {
   // & Process the main execution steps of KaryawanLayoutPage inside this function body.
   // % Memproses langkah eksekusi utama KaryawanLayoutPage di dalam body fungsi ini.
+  const navigate = useNavigate();
   const location = useLocation();
   const hideBottomNav = location.pathname.startsWith("/karyawan/absensi");
+  const previousUnreadCountRef = useRef<number | null>(null);
+  const lastToastNotificationIdRef = useRef<string | null>(null);
+
+  const { data: unreadCount } = useQuery({
+    queryKey: ["karyawan-layout", "notifications", "unread-count"],
+    queryFn: notificationsService.getUnreadCount,
+    refetchInterval: 8000,
+    staleTime: 5000,
+    retry: 1,
+  });
+
+  useEffect(() => {
+    if (typeof unreadCount !== "number") {
+      return;
+    }
+
+    const previousUnreadCount = previousUnreadCountRef.current;
+    previousUnreadCountRef.current = unreadCount;
+
+    if (previousUnreadCount === null || unreadCount <= previousUnreadCount) {
+      return;
+    }
+
+    if (location.pathname.startsWith("/karyawan/notifikasi")) {
+      return;
+    }
+
+    notificationsService
+      .getMyNotifications({ page: 1, limit: 1, isRead: false })
+      .then((response) => {
+        const latestNotification = response.data?.[0];
+        if (!latestNotification) {
+          return;
+        }
+
+        if (lastToastNotificationIdRef.current === latestNotification.id) {
+          return;
+        }
+
+        lastToastNotificationIdRef.current = latestNotification.id;
+
+        toast(latestNotification.title, {
+          description: latestNotification.body,
+          action: {
+            label: "Buka",
+            onClick: () => navigate("/karyawan/notifikasi"),
+          },
+        });
+      })
+      .catch(() => {
+        // Keep silent here to avoid duplicate noisy toasts from global interceptor.
+      });
+  }, [location.pathname, navigate, unreadCount]);
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -19,6 +78,8 @@ const KaryawanLayoutPage = () => {
             className={`
             flex-1 overflow-y-auto no-scrollbar ${hideBottomNav ? "pb-4" : "pb-24"}`}
           >
+            {/* Banner minta izin notifikasi — hanya muncul kalau belum subscribe */}
+            <NotificationPermissionBanner />
             <Outlet />
           </div>
 
@@ -26,7 +87,9 @@ const KaryawanLayoutPage = () => {
             <nav className="absolute bottom-3 left-3 right-3 z-20 rounded-2xl border border-gray-200 bg-white/95 p-2 shadow-theme-sm backdrop-blur">
               <ul
                 className="grid gap-1 text-center text-[11px] font-semibold text-gray-500"
-                style={{ gridTemplateColumns: `repeat(${NAV_ITEMS.length}, minmax(0, 1fr))` }}
+                style={{
+                  gridTemplateColumns: `repeat(${NAV_ITEMS.length}, minmax(0, 1fr))`,
+                }}
               >
                 {NAV_ITEMS.map((item) => (
                   <li key={item.to}>

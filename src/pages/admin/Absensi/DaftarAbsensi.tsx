@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/Absensi/DaftarAbsensi.tsx
+// & This file defines frontend UI or logic for DaftarAbsensi.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk DaftarAbsensi.tsx.
+
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import ComponentCard from "../../../components/common/ComponentCard";

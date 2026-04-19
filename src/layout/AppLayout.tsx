@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/layout/AppLayout.tsx
+// & This file defines frontend UI or logic for AppLayout.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk AppLayout.tsx.
+
 import { SidebarProvider, useSidebar } from "../context/SidebarContext";
 import { Outlet } from "react-router";
 import AppHeader from "./AppHeader";

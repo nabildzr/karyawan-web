@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/Calendar.tsx
+// & This file defines frontend UI or logic for Calendar.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Calendar.tsx.
+
 import { useState, useRef, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";

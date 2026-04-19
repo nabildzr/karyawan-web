@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/date-picker.tsx
+// & This file defines frontend UI or logic for date-picker.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk date-picker.tsx.
+
 import { useEffect } from "react";
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.css";

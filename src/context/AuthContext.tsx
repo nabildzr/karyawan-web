@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/context/AuthContext.tsx
+// & This file defines frontend UI or logic for AuthContext.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk AuthContext.tsx.
+
 // & ============================================================
 // % AUTH CONTEXT
 // % Wrapper tipis di atas useCurrentUser()
@@ -73,6 +77,7 @@ const KNOWN_RBAC_ROUTE_PATHS = [
   "/karyawan/pengajuan",
   "/karyawan/review",
   "/karyawan/jadwal",
+  "/karyawan/dompet",
   "/karyawan/akun",
 ];
 

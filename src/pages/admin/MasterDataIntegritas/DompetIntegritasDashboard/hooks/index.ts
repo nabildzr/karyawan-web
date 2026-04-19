@@ -1,0 +1,1 @@
+export { useDompetIntegritasDashboardPage } from "./useDompetIntegritasDashboardPage";

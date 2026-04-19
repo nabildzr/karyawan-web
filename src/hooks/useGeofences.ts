@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useGeofences.ts
+// & This file defines frontend UI or logic for useGeofences.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useGeofences.ts.
+
 import { useCallback, useEffect, useState } from "react";
 import { geofencesService } from "../services/geofences.service";
 import type {

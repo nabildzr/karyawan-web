@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/services/geofences.service.ts
+// & This file defines frontend UI or logic for geofences.service.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk geofences.service.ts.
+
 import { apiClient } from "../api/apiClient";
 import type {
     CreateGeofenceInput,

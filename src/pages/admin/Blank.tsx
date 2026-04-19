@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/Blank.tsx
+// & This file defines frontend UI or logic for Blank.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Blank.tsx.
+
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import PageMeta from "../../components/common/PageMeta";
 

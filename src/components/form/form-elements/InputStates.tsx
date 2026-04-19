@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/form-elements/InputStates.tsx
+// & This file defines frontend UI or logic for InputStates.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk InputStates.tsx.
+
 import { useState } from "react";
 import ComponentCard from "../../common/ComponentCard";
 import Input from "../input/InputField";

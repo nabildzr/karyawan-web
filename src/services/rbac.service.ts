@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/services/rbac.service.ts
+// & This file defines frontend UI or logic for rbac.service.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk rbac.service.ts.
+
 import { apiClient } from "../api/apiClient";
 import type {
     PaginatedMeta,

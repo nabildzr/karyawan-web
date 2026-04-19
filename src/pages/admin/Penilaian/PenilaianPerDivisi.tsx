@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/Penilaian/PenilaianPerDivisi.tsx
+// & This file defines frontend UI or logic for PenilaianPerDivisi.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk PenilaianPerDivisi.tsx.
+
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
 import ComponentCard from "../../../components/common/ComponentCard";

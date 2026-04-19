@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/videos/FourIsToThree.tsx
+// & This file defines frontend UI or logic for FourIsToThree.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk FourIsToThree.tsx.
+
 export default function FourIsToThree() {
   return (
     <div className="aspect-4/3 overflow-hidden rounded-lg">

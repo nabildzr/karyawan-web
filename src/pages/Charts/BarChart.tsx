@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/Charts/BarChart.tsx
+// & This file defines frontend UI or logic for BarChart.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk BarChart.tsx.
+
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import ComponentCard from "../../components/common/ComponentCard";
 import BarChartOne from "../../components/charts/bar/BarChartOne";

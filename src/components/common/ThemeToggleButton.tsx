@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/common/ThemeToggleButton.tsx
+// & This file defines frontend UI or logic for ThemeToggleButton.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk ThemeToggleButton.tsx.
+
 import { useTheme } from "../../context/ThemeContext";
 
 export const ThemeToggleButton: React.FC = () => {

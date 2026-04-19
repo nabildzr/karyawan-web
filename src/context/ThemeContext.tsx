@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/context/ThemeContext.tsx
+// & This file defines frontend UI or logic for ThemeContext.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk ThemeContext.tsx.
+
 "use client";
 
 import type React from "react";

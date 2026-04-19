@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ecommerce/RecentOrders.tsx
+// & This file defines frontend UI or logic for RecentOrders.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk RecentOrders.tsx.
+
 import {
   Table,
   TableBody,

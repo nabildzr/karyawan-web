@@ -36,3 +36,12 @@ schema.prisma
 LICENSE.md
 README.md
 .docs/*
+
+
+# % File Lain (khusus untuk karyawan-web)
+src/pages/template
+src/pages/template/*
+src/pages/Charts
+src/pages/Charts/*
+src/pages/Forms
+src/pages/Forms/*

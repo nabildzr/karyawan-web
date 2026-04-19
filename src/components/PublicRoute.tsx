@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/PublicRoute.tsx
+// & This file defines frontend UI or logic for PublicRoute.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk PublicRoute.tsx.
+
 // & ============================================================
 // % PUBLIC ROUTE
 // % Kebalikan dari ProtectedRoute —

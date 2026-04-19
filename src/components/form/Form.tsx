@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/Form.tsx
+// & This file defines frontend UI or logic for Form.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Form.tsx.
+
 import { FC, ReactNode, FormEvent } from "react";
 
 interface FormProps {

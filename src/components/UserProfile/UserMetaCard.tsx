@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/UserProfile/UserMetaCard.tsx
+// & This file defines frontend UI or logic for UserMetaCard.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk UserMetaCard.tsx.
+
 import { useModal } from "../../hooks/useModal";
 import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";

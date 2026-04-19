@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/dropdown/Dropdown.tsx
+// & This file defines frontend UI or logic for Dropdown.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Dropdown.tsx.
+
 import type React from "react";
 import { useEffect, useRef } from "react";
 

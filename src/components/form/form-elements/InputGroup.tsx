@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/form-elements/InputGroup.tsx
+// & This file defines frontend UI or logic for InputGroup.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk InputGroup.tsx.
+
 import ComponentCard from "../../common/ComponentCard";
 import Label from "../Label";
 import Input from "../input/InputField";

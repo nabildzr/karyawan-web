@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/charts/line/LineChartOne.tsx
+// & This file defines frontend UI or logic for LineChartOne.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk LineChartOne.tsx.
+
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 

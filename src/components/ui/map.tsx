@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/map.tsx
+// & This file defines frontend UI or logic for map.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk map.tsx.
+
 import { clsx } from "clsx";
 import type { DivIconOptions } from "leaflet";
 import L from "leaflet";

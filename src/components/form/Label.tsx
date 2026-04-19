@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/Label.tsx
+// & This file defines frontend UI or logic for Label.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Label.tsx.
+
 import { FC, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import { clsx } from "clsx";

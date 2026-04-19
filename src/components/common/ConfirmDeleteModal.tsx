@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/common/ConfirmDeleteModal.tsx
+// & This file defines frontend UI or logic for ConfirmDeleteModal.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk ConfirmDeleteModal.tsx.
+
 // ============================================================
 // CONFIRM DELETE MODAL — Reusable
 // Props: isOpen, onClose, itemName, onConfirm, loading, errorMessage

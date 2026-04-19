@@ -26,6 +26,10 @@ export const MENU_CARDS: readonly HomeMenuCard[] = [
     subtitle: "Lihat data masuk dan pulang",
   },
   {
+    title: "Leaderboard",
+    subtitle: "Lihat peringkat integritas",
+  },
+  {
     title: "Pengajuan",
     subtitle: "Cuti, izin, dan lembur",
   },

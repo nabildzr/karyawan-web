@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/Forms/FormElements.tsx
+// & This file defines frontend UI or logic for FormElements.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk FormElements.tsx.
+
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import DefaultInputs from "../../components/form/form-elements/DefaultInputs";
 import InputGroup from "../../components/form/form-elements/InputGroup";

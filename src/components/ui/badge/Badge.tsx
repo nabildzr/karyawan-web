@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/badge/Badge.tsx
+// & This file defines frontend UI or logic for Badge.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Badge.tsx.
+
 type BadgeVariant = "light" | "solid";
 type BadgeSize = "sm" | "md";
 type BadgeColor =

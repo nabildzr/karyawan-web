@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/MasterDataKeamanan/Rbac.tsx
+// & This file defines frontend UI or logic for Rbac.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Rbac.tsx.
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";

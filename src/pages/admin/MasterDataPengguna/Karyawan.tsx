@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/MasterDataPengguna/Karyawan.tsx
+// & This file defines frontend UI or logic for Karyawan.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Karyawan.tsx.
+
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { apiClient } from "../../../api/apiClient";

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/MasterDataLogs/AuditLogs.tsx
+// & This file defines frontend UI or logic for AuditLogs.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk AuditLogs.tsx.
+
 import { useEffect, useState } from 'react';
 import ComponentCard from '../../../components/common/ComponentCard';
 import PageBreadcrumb from '../../../components/common/PageBreadCrumb';

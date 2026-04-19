@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useFaces.ts
+// & This file defines frontend UI or logic for useFaces.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useFaces.ts.
+
 import { useCallback, useState } from "react";
 import { facesService } from "../services/faces.service";
 import type {

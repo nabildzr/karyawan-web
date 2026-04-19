@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/auth/SignUpForm.tsx
+// & This file defines frontend UI or logic for SignUpForm.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk SignUpForm.tsx.
+
 import { useState } from "react";
 import { Link } from "react-router";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../../icons";

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/videos/AspectRatioVideo.tsx
+// & This file defines frontend UI or logic for AspectRatioVideo.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk AspectRatioVideo.tsx.
+
 type AspectRatioVideoProps = {
   videoUrl: string; // URL of the video
   aspectRatio?: string; // Aspect ratio in the format "width/height", default is "16/9"

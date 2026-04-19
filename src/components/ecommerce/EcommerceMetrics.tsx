@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ecommerce/EcommerceMetrics.tsx
+// & This file defines frontend UI or logic for EcommerceMetrics.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk EcommerceMetrics.tsx.
+
 import {
   ArrowDownIcon,
   ArrowUpIcon,

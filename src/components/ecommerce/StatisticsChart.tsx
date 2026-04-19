@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ecommerce/StatisticsChart.tsx
+// & This file defines frontend UI or logic for StatisticsChart.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk StatisticsChart.tsx.
+
 import { useEffect, useRef } from "react";
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";

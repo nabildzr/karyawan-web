@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/Tables/BasicTables.tsx
+// & This file defines frontend UI or logic for BasicTables.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk BasicTables.tsx.
+
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 import ComponentCard from "../../components/common/ComponentCard";
 import PageMeta from "../../components/common/PageMeta";

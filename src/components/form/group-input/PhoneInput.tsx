@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/group-input/PhoneInput.tsx
+// & This file defines frontend UI or logic for PhoneInput.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk PhoneInput.tsx.
+
 import { useState } from "react";
 
 interface CountryCode {

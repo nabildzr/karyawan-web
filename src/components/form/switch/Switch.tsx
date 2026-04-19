@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/switch/Switch.tsx
+// & This file defines frontend UI or logic for Switch.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Switch.tsx.
+
 import { useState } from "react";
 
 interface SwitchProps {

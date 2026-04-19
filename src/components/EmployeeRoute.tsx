@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/EmployeeRoute.tsx
+// & This file defines frontend UI or logic for EmployeeRoute.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk EmployeeRoute.tsx.
+
 // & ============================================================
 // % EMPLOYEE ROUTE
 // % Guard komponen untuk portal karyawan

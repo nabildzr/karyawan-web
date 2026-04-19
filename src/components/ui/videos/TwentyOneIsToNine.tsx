@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/videos/TwentyOneIsToNine.tsx
+// & This file defines frontend UI or logic for TwentyOneIsToNine.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk TwentyOneIsToNine.tsx.
+
 export default function TwentyOneIsToNine() {
   return (
     <div className="aspect-21/9 overflow-hidden rounded-lg">

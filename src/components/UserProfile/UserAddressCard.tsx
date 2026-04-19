@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/UserProfile/UserAddressCard.tsx
+// & This file defines frontend UI or logic for UserAddressCard.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk UserAddressCard.tsx.
+
 import { useAuthContext } from "../../context/AuthContext";
 import { useModal } from "../../hooks/useModal";
 import Input from "../form/input/InputField";

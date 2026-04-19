@@ -1,5 +1,9 @@
 // * This file defines route module logic for src/pages/Karyawan/routes/home/components/HomeHeaderSection.tsx.
 
+import { Bell } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useNotifications } from "../../../../../hooks/useNotifications";
+
 interface HomeHeaderSectionProps {
   todayDisplay: string;
   shiftDisplay: string;
@@ -36,6 +40,7 @@ const HomeHeaderSection = ({
   canAccessAdminPortal,
   onPortalChange,
 }: HomeHeaderSectionProps) => {
+  const { unreadCount } = useNotifications();
   // & Process the main execution steps of HomeHeaderSection inside this function body.
   // % Memproses langkah eksekusi utama HomeHeaderSection di dalam body fungsi ini.
   return (
@@ -53,16 +58,31 @@ const HomeHeaderSection = ({
             <option value="karyawan" className="text-gray-900">
               Portal Karyawan
             </option>
-            <option value="admin" disabled={!canAccessAdminPortal} className="text-gray-900">
+            <option
+              value="admin"
+              disabled={!canAccessAdminPortal}
+              className="text-gray-900"
+            >
               {canAccessAdminPortal
                 ? "Portal Admin"
                 : "Portal Admin (Tidak ada akses)"}
             </option>
           </select>
         </label>
-        <span className="rounded-full bg-white/20 px-2.5 py-1 text-xs font-medium">
-          {todayDisplay}
-        </span>
+        <div className="flex items-center gap-3">
+          <span className="rounded-full bg-white/20 px-2.5 py-1 text-xs font-medium">
+            {todayDisplay}
+          </span>
+          <Link
+            to="/karyawan/notifikasi"
+            className="relative p-2 rounded-full bg-white/10 hover:bg-white/20 transition cursor-pointer"
+          >
+            <Bell size={16} />
+            {unreadCount > 0 && (
+              <span className="absolute top-1.5 right-2 w-2 h-2 rounded-full bg-red-500"></span>
+            )}
+          </Link>
+        </div>
       </div>
 
       <div className="mb-4 flex items-center gap-3">
@@ -83,7 +103,9 @@ const HomeHeaderSection = ({
         <div className="h-2 rounded-full bg-white/25">
           <div
             className="h-2 rounded-full bg-white transition-all duration-500"
-            style={{ width: `${Math.max(0, Math.min(100, shiftProgressPercent))}%` }}
+            style={{
+              width: `${Math.max(0, Math.min(100, shiftProgressPercent))}%`,
+            }}
           />
         </div>
         <p className="mt-2 text-xs font-medium text-white/90">{shiftStatus}</p>

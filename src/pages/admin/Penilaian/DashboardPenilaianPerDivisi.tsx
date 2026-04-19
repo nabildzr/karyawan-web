@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/Penilaian/DashboardPenilaianPerDivisi.tsx
+// & This file defines frontend UI or logic for DashboardPenilaianPerDivisi.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk DashboardPenilaianPerDivisi.tsx.
+
 import { useEffect, useMemo, useState } from "react";
 import { useLocation, useParams } from "react-router";
 import PageBreadcrumb from "../../../components/common/PageBreadCrumb";

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/services/submissions.service.ts
+// & This file defines frontend UI or logic for submissions.service.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk submissions.service.ts.
+
 import { apiClient } from "../api/apiClient";
 import type {
   CreateSubmissionInput,

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/table/index.tsx
+// & This file defines frontend UI or logic for index.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk index.tsx.
+
 import { ReactNode } from "react";
 
 // Props for Table

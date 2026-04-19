@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/dropdown/DropdownItem.tsx
+// & This file defines frontend UI or logic for DropdownItem.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk DropdownItem.tsx.
+
 import type React from "react";
 import { Link } from "react-router";
 

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useAssessments.ts
+// & This file defines frontend UI or logic for useAssessments.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useAssessments.ts.
+
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
 import { assessmentsService } from "../services/assessments.service";

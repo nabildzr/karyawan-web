@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/MasterDataAbsensi/Geofences.tsx
+// & This file defines frontend UI or logic for Geofences.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Geofences.tsx.
+
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";

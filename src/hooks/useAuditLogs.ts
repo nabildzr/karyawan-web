@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useAuditLogs.ts
+// & This file defines frontend UI or logic for useAuditLogs.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useAuditLogs.ts.
+
 import { useCallback, useRef, useState } from "react";
 import { auditLogsService } from "../services/auditLogs.service";
 import type {

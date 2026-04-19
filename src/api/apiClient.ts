@@ -41,6 +41,10 @@ apiClient.interceptors.response.use(
     const isSilentBlipCaptionRequest = requestUrl.includes(
       "/attendances/blip-caption",
     );
+    const isSilentMarketplaceBuyRequest =
+      /\/points\/marketplace\/[^/]+\/buy/.test(requestUrl);
+    const shouldSilenceToast =
+      isSilentBlipCaptionRequest || isSilentMarketplaceBuyRequest;
 
     if (error.response) {
       const status = error.response.status;
@@ -59,7 +63,7 @@ apiClient.interceptors.response.use(
       } else {
         // & Show toast for non-401 responses unless explicitly silenced.
         // % Tampilkan toast untuk response non-401 kecuali memang disenyapkan.
-        if (!isSilentBlipCaptionRequest) {
+        if (!shouldSilenceToast) {
           toast.error(message);
         }
       }
@@ -72,7 +76,7 @@ apiClient.interceptors.response.use(
     // & Handle network/timeout errors when no HTTP response is returned.
     // % Tangani error network/timeout saat tidak ada HTTP response.
     const networkMsg = error.message ?? "Tidak dapat terhubung ke server";
-    if (!isSilentBlipCaptionRequest) {
+    if (!shouldSilenceToast) {
       toast.error(networkMsg);
     }
     return Promise.reject(new Error(networkMsg));

@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/form-elements/ToggleSwitch.tsx
+// & This file defines frontend UI or logic for ToggleSwitch.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk ToggleSwitch.tsx.
+
 import ComponentCard from "../../common/ComponentCard";
 import Switch from "../switch/Switch";
 

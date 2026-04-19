@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/App.tsx
+// & This file defines frontend UI or logic for App.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk App.tsx.
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router";
@@ -20,6 +24,11 @@ import Home from "./pages/admin/Dashboard/Home";
 import Geofences from "./pages/admin/MasterDataAbsensi/Geofences";
 import Divisi from "./pages/admin/MasterDataHierarki/Divisi";
 import Jabatan from "./pages/admin/MasterDataHierarki/Jabatan";
+import AturanPoin from "./pages/admin/MasterDataIntegritas/AturanPoin";
+import DompetIntegritasDashboard from "./pages/admin/MasterDataIntegritas/DompetIntegritasDashboard";
+import IntegrityLogs from "./pages/admin/MasterDataIntegritas/IntegrityLogs";
+import ItemMarketplace from "./pages/admin/MasterDataIntegritas/ItemMarketplace";
+import LeaderboardIntegritas from "./pages/admin/MasterDataIntegritas/LeaderboardIntegritas";
 import JadwalKerja from "./pages/admin/MasterDataJadwalKerja/JadwalKerja";
 import ManajemenLibur from "./pages/admin/MasterDataJadwalKerja/ManajemenLibur";
 import Rbac from "./pages/admin/MasterDataKeamanan/Rbac";
@@ -36,18 +45,24 @@ import PenilaianKaryawan from "./pages/admin/Penilaian/PenilaianKaryawan";
 import PenilaianKategori from "./pages/admin/Penilaian/PenilaianKategori";
 import PenilaianPerDivisi from "./pages/admin/Penilaian/PenilaianPerDivisi";
 import UserProfiles from "./pages/admin/UserProfiles";
+import ForgotPassword from "./pages/AuthPages/ForgotPassword";
+import ResetPassword from "./pages/AuthPages/ResetPassword";
 import SignIn from "./pages/AuthPages/SignIn";
 import SignUp from "./pages/AuthPages/SignUp";
 import BarChart from "./pages/Charts/BarChart";
 import LineChart from "./pages/Charts/LineChart";
 import KaryawanAbsensi from "./pages/Karyawan/routes/absensi";
+import KaryawanAbsensiDetail from "./pages/Karyawan/routes/absensi/detail";
 import KaryawanAkun from "./pages/Karyawan/routes/akun";
 import AttendanceCapturePage from "./pages/Karyawan/routes/attendanceFlow/CapturePage";
 import AttendanceProcessingPage from "./pages/Karyawan/routes/attendanceFlow/ProcessingPage";
 import AttendanceResultPage from "./pages/Karyawan/routes/attendanceFlow/ResultPage";
+import KaryawanDompet from "./pages/Karyawan/routes/dompet";
 import KaryawanHome from "./pages/Karyawan/routes/home";
 import KaryawanJadwal from "./pages/Karyawan/routes/jadwal";
 import KaryawanLayout from "./pages/Karyawan/routes/layout";
+import KaryawanLeaderboard from "./pages/Karyawan/routes/leaderboard";
+import NotifikasiKaryawan from "./pages/Karyawan/routes/notifikasi";
 import KaryawanPengajuan from "./pages/Karyawan/routes/pengajuan";
 import KaryawanReview from "./pages/Karyawan/routes/review";
 import LandingPage from "./pages/LandingPage/LandingPage";
@@ -254,6 +269,50 @@ export default function App() {
                   <Route path="rbac" element={<Rbac />} />
                   <Route path="rbac/:roleId" element={<RbacRoleDetail />} />
                 </Route>
+                <Route
+                  element={
+                    <ProtectedRoute requiredRoutePath="/admin/dompet-integritas" />
+                  }
+                >
+                  <Route
+                    path="dompet-integritas"
+                    element={<DompetIntegritasDashboard />}
+                  />
+                </Route>
+                <Route
+                  element={
+                    <ProtectedRoute requiredRoutePath="/admin/aturan-poin" />
+                  }
+                >
+                  <Route path="aturan-poin" element={<AturanPoin />} />
+                </Route>
+                <Route
+                  element={
+                    <ProtectedRoute requiredRoutePath="/admin/item-marketplace" />
+                  }
+                >
+                  <Route
+                    path="item-marketplace"
+                    element={<ItemMarketplace />}
+                  />
+                </Route>
+                <Route
+                  element={
+                    <ProtectedRoute requiredRoutePath="/admin/integrity-logs" />
+                  }
+                >
+                  <Route path="integrity-logs" element={<IntegrityLogs />} />
+                </Route>
+                <Route
+                  element={
+                    <ProtectedRoute requiredRoutePath="/admin/leaderboard-integritas" />
+                  }
+                >
+                  <Route
+                    path="leaderboard-integritas"
+                    element={<LeaderboardIntegritas />}
+                  />
+                </Route>
               </Route>
             </Route>
 
@@ -262,6 +321,10 @@ export default function App() {
               <Route path="/karyawan" element={<KaryawanLayout />}>
                 <Route index element={<KaryawanHome />} />
                 <Route path="absensi" element={<KaryawanAbsensi />} />
+                <Route
+                  path="absensi/detail/:attendanceId"
+                  element={<KaryawanAbsensiDetail />}
+                />
                 <Route
                   path="absensi/check-in"
                   element={<Navigate to="/karyawan/absensi" replace />}
@@ -285,7 +348,10 @@ export default function App() {
                 <Route path="pengajuan" element={<KaryawanPengajuan />} />
                 <Route path="jadwal" element={<KaryawanJadwal />} />
                 <Route path="review" element={<KaryawanReview />} />
+                <Route path="dompet" element={<KaryawanDompet />} />
+                <Route path="leaderboard" element={<KaryawanLeaderboard />} />
                 <Route path="akun" element={<KaryawanAkun />} />
+                <Route path="notifikasi" element={<NotifikasiKaryawan />} />
               </Route>
 
               <Route
@@ -307,6 +373,11 @@ export default function App() {
               <Route path="/admin/signin" element={<SignIn />} />
               <Route path="/admin/signup" element={<SignUp />} />
               <Route
+                path="/admin/forgot-password"
+                element={<ForgotPassword />}
+              />
+              <Route path="/admin/reset-password" element={<ResetPassword />} />
+              <Route
                 path="/signin"
                 element={<Navigate to="/admin/signin" replace />}
               />
@@ -314,6 +385,8 @@ export default function App() {
                 path="/signup"
                 element={<Navigate to="/admin/signup" replace />}
               />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/karyawan/signin" element={<SignIn />} />
             </Route>
 

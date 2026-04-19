@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/common/PageBreadCrumb.tsx
+// & This file defines frontend UI or logic for PageBreadCrumb.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk PageBreadCrumb.tsx.
+
 import { Link } from "react-router";
 
 interface BreadcrumbProps {

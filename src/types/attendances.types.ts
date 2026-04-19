@@ -133,6 +133,7 @@ export interface AttendanceRecord {
   radiusCheckOutSnapshot?: number | null;
   geofencesId?: string | null;
   geofencesCheckOutId?: string | null;
+  usedTokenId?: string | null;
   createdAt: string;
   updatedAt: string;
   // & Relations populated by list/detail endpoint.

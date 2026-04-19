@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/pages/admin/MasterDataPengajuan/DaftarPengajuan.tsx
+// & This file defines frontend UI or logic for DaftarPengajuan.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk DaftarPengajuan.tsx.
+
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import PageBreadcrumb from "../../../components/common/PageBreadCrumb";

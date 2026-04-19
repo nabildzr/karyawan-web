@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/hooks/useJabatan.ts
+// & This file defines frontend UI or logic for useJabatan.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useJabatan.ts.
+
 import { useCallback, useEffect, useState } from "react";
 import { jabatanService } from "../services/jabatan.service";
 import type {

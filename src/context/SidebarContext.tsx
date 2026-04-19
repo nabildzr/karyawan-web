@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/context/SidebarContext.tsx
+// & This file defines frontend UI or logic for SidebarContext.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk SidebarContext.tsx.
+
 import { createContext, useContext, useState, useEffect } from "react";
 
 type SidebarContextType = {

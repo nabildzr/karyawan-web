@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/images/TwoColumnImageGrid.tsx
+// & This file defines frontend UI or logic for TwoColumnImageGrid.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk TwoColumnImageGrid.tsx.
+
 export default function TwoColumnImageGrid() {
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">

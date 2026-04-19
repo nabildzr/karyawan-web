@@ -1,11 +1,23 @@
+// * Frontend module: karyawan-web/src/hooks/useAuth.ts
+// & This file defines frontend UI or logic for useAuth.ts.
+// % File ini mendefinisikan UI atau logika frontend untuk useAuth.ts.
+
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import {
   getCurrentUser,
   loginUser,
   logoutUser,
+  resetPassword,
+  sendCode,
+  verifyCode,
 } from "../services/auth.service";
-import type { LoginRequest } from "../types/auth.types";
+import type {
+  LoginRequest,
+  ResetPasswordRequest,
+  SendCodeRequest,
+  VerifyCodeRequest,
+} from "../types/auth.types";
 
 // * Hook auth berbasis TanStack Query.
 // * Menyediakan query user aktif, login, dan logout.
@@ -83,5 +95,35 @@ export function useLogout() {
       queryClient.clear();
       navigate("/admin/signin");
     },
+  });
+}
+
+// & Send reset verification code mutation.
+// % Mutation kirim kode verifikasi reset.
+export function useSendCode() {
+  return useMutation({
+    mutationFn: (payload: SendCodeRequest) => sendCode(payload),
+  });
+}
+
+// & Legacy alias for backward compatibility.
+// % Alias legacy untuk kompatibilitas.
+export function useForgotPassword() {
+  return useSendCode();
+}
+
+// & Reset password mutation.
+// % Mutation reset password.
+export function useResetPassword() {
+  return useMutation({
+    mutationFn: (payload: ResetPasswordRequest) => resetPassword(payload),
+  });
+}
+
+// & Verify reset code mutation.
+// % Mutation verifikasi kode reset.
+export function useVerifyCode() {
+  return useMutation({
+    mutationFn: (payload: VerifyCodeRequest) => verifyCode(payload),
   });
 }

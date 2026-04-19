@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/form/form-elements/DropZone.tsx
+// & This file defines frontend UI or logic for DropZone.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk DropZone.tsx.
+
 import ComponentCard from "../../common/ComponentCard";
 import { useDropzone } from "react-dropzone";
 // import Dropzone from "react-dropzone";

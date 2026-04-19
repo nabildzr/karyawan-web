@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/header/NotificationDropdown.tsx
+// & This file defines frontend UI or logic for NotificationDropdown.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk NotificationDropdown.tsx.
+
 import { useState } from "react";
 import { Link } from "react-router";
 import { Dropdown } from "../ui/dropdown/Dropdown";

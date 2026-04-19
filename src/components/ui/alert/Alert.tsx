@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/components/ui/alert/Alert.tsx
+// & This file defines frontend UI or logic for Alert.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk Alert.tsx.
+
 import { Link } from "react-router";
 
 interface AlertProps {

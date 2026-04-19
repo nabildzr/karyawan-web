@@ -1,3 +1,7 @@
+// * Frontend module: karyawan-web/src/layout/AppSidebar.tsx
+// & This file defines frontend UI or logic for AppSidebar.tsx.
+// % File ini mendefinisikan UI atau logika frontend untuk AppSidebar.tsx.
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 
@@ -17,17 +21,21 @@ import {
 import type { PermissionAction, UserRole } from "../types/auth.types";
 import SidebarWidget from "./SidebarWidget";
 
+// & Navigation item contract used by all sidebar sections.
+// % Kontrak item navigasi yang dipakai semua section sidebar.
 type NavItem = {
   name: string;
   icon: React.ReactNode;
   path?: string;
   requiredAction?: PermissionAction;
-  /** Kalau diisi, item hanya muncul untuk role yang ada di list ini */
+  // & If provided, item appears only for listed roles.
+  // % Jika diisi, item hanya muncul untuk role yang ada di daftar.
   roles?: UserRole[];
   subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
 };
 
-// Inline SVG icon untuk map pin (tidak ada di icon library)
+// & Fallback inline icon for map pin because icon library has no equivalent.
+// % Icon inline cadangan untuk map pin karena icon library tidak punya ikon setara.
 const MapPinIcon = (
   <svg
     className="h-5 w-5"
@@ -50,8 +58,13 @@ const MapPinIcon = (
   </svg>
 );
 
- const adminPath = (path: string) => (path === "/" ? "/admin" : `/admin${path}`);
+// & Normalize all admin routes under /admin while preserving dashboard root.
+// % Normalisasi semua route admin di bawah /admin sambil mempertahankan root dashboard.
+const adminPath = (path: string) =>
+  path === "/" ? "/admin" : `/admin${path}`;
 
+// & Primary section for top-level dashboard navigation.
+// % Section utama untuk navigasi dashboard level teratas.
 const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
@@ -60,11 +73,15 @@ const navItems: NavItem[] = [
   },
 ];
 
+// & Master data hierarchy section.
+// % Section master data hierarki.
 const hierarkiItems: NavItem[] = [
   { icon: <CalenderIcon />, name: "Divisi", path: adminPath("/divisi") },
   { icon: <CalenderIcon />, name: "Jabatan", path: adminPath("/jabatan") },
 ];
 
+// & Master data employee and user management section.
+// % Section master data manajemen karyawan dan pengguna.
 const karyawanItems: NavItem[] = [
   {
     icon: <BoxCubeIcon />,
@@ -80,6 +97,8 @@ const karyawanItems: NavItem[] = [
   },
 ];
 
+// & Master data work schedule section.
+// % Section master data jadwal kerja.
 const jadwalKerjaItems: NavItem[] = [
   {
     icon: <CalenderIcon />,
@@ -97,6 +116,8 @@ const jadwalKerjaItems: NavItem[] = [
   },
 ];
 
+// & Master data attendance section.
+// % Section master data absensi.
 const absensiItems: NavItem[] = [
   {
     icon: <ListIcon />,
@@ -124,6 +145,8 @@ const absensiItems: NavItem[] = [
   },
 ];
 
+// & Master data submissions section.
+// % Section master data pengajuan.
 const pengajuanItems: NavItem[] = [
   {
     icon: <ListIcon />,
@@ -133,6 +156,8 @@ const pengajuanItems: NavItem[] = [
   },
 ];
 
+// & Master data performance assessment section.
+// % Section master data penilaian kinerja.
 const penilaianItems: NavItem[] = [
   {
     icon: <PieChartIcon />,
@@ -160,6 +185,8 @@ const penilaianItems: NavItem[] = [
   },
 ];
 
+// & Reporting section.
+// % Section pelaporan.
 const laporanItems: NavItem[] = [
   {
     icon: <TableIcon />,
@@ -173,6 +200,8 @@ const laporanItems: NavItem[] = [
   },
 ];
 
+// & Audit log section.
+// % Section audit log.
 const logsItems: NavItem[] = [
   {
     icon: <PlugInIcon />,
@@ -182,6 +211,8 @@ const logsItems: NavItem[] = [
   },
 ];
 
+// & Security administration section.
+// % Section administrasi keamanan.
 const keamananItems: NavItem[] = [
   {
     icon: <PlugInIcon />,
@@ -191,6 +222,38 @@ const keamananItems: NavItem[] = [
   },
 ];
 
+// & Integrity Wallet menu group — separated from keamanan.
+// % Grup menu Dompet Integritas — dipisah dari keamanan.
+const integritasItems: NavItem[] = [
+  {
+    icon: <BoxCubeIcon />,
+    name: "Dompet Integritas",
+    path: adminPath("/dompet-integritas"),
+  },
+  {
+    icon: <ListIcon />,
+    name: "Aturan Poin",
+    path: adminPath("/aturan-poin"),
+  },
+  {
+    icon: <GridIcon />,
+    name: "Item Marketplace",
+    path: adminPath("/item-marketplace"),
+  },
+  {
+    icon: <TableIcon />,
+    name: "Integrity Logs",
+    path: adminPath("/integrity-logs"),
+  },
+  {
+    icon: <PieChartIcon />,
+    name: "Leaderboard",
+    path: adminPath("/leaderboard-integritas"),
+  },
+];
+
+// & Ordered menu registry used by active-submenu sync logic.
+// % Registri menu berurutan yang dipakai logika sinkronisasi submenu aktif.
 const menuGroups: { type: string; items: NavItem[] }[] = [
   { type: "main", items: navItems },
   { type: "hierarki", items: hierarkiItems },
@@ -199,6 +262,7 @@ const menuGroups: { type: string; items: NavItem[] }[] = [
   { type: "absensi", items: absensiItems },
   { type: "pengajuan", items: pengajuanItems },
   { type: "penilaian", items: penilaianItems },
+  { type: "integritas", items: integritasItems },
   { type: "laporan", items: laporanItems },
   { type: "logs", items: logsItems },
   { type: "keamanan", items: keamananItems },
@@ -216,13 +280,15 @@ const menuGroups: { type: string; items: NavItem[] }[] = [
 //     ],
 //   },
 //   {
-//     icon: <BoxCubeIcon />,
+// & Sidebar shell component handling visibility, access control, and rendering.
+// % Komponen shell sidebar yang menangani visibilitas, kontrol akses, dan rendering.
 //     name: "UI Elements",
 //     subItems: [
 //       { name: "Alerts", path: "/alerts", pro: false },
 //       { name: "Avatar", path: "/avatars", pro: false },
 //       { name: "Badge", path: "/badge", pro: false },
-//       { name: "Buttons", path: "/buttons", pro: false },
+  // & Check whether a navigation item is visible for current user.
+  // % Cek apakah item navigasi boleh terlihat untuk user saat ini.
 //       { name: "Images", path: "/images", pro: false },
 //       { name: "Videos", path: "/videos", pro: false },
 //     ],
@@ -262,6 +328,8 @@ const AppSidebar: React.FC = () => {
     [hasRole, hasRoutePermission, user],
   );
 
+  // & Store expanded submenu identity and measured submenu heights.
+  // % Simpan identitas submenu terbuka dan tinggi submenu yang sudah diukur.
   const [openSubmenu, setOpenSubmenu] = useState<{
     type: string;
     index: number;
@@ -271,12 +339,19 @@ const AppSidebar: React.FC = () => {
   );
   const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  // const isActive = (path: string) => location.pathname === path;
+  // & Keep parent menu active on nested routes except for generic dashboard roots.
+  // % Pertahankan menu parent tetap aktif pada route turunan kecuali root dashboard generik.
   const isActive = useCallback(
-    (path: string) => location.pathname === path,
+    (path: string) => {
+      if (location.pathname === path) return true;
+      if (path === "/admin" || path === "/karyawan") return false;
+      return location.pathname.startsWith(`${path}/`);
+    },
     [location.pathname],
   );
 
+  // & Auto-open submenu when current URL matches one of submenu routes.
+  // % Buka submenu otomatis ketika URL saat ini cocok dengan salah satu route submenu.
   useEffect(() => {
     let submenuMatched = false;
     menuGroups.forEach(({ type: menuType, items }) => {
@@ -300,6 +375,8 @@ const AppSidebar: React.FC = () => {
     }
   }, [location, isActive]);
 
+  // & Measure submenu height for smooth open/close animation.
+  // % Ukur tinggi submenu untuk animasi buka/tutup yang halus.
   useEffect(() => {
     if (openSubmenu !== null) {
       const key = `${openSubmenu.type}-${openSubmenu.index}`;
@@ -312,6 +389,8 @@ const AppSidebar: React.FC = () => {
     }
   }, [openSubmenu]);
 
+  // & Toggle submenu for clicked menu item.
+  // % Toggle submenu untuk item menu yang diklik.
   const handleSubmenuToggle = (index: number, menuType: string) => {
     setOpenSubmenu((prevOpenSubmenu) => {
       if (
@@ -325,10 +404,14 @@ const AppSidebar: React.FC = () => {
     });
   };
 
+  // & Render list of menu items, including nested submenu rendering.
+  // % Render daftar item menu, termasuk render submenu bertingkat.
   const renderMenuItems = (items: NavItem[], menuType: string) => (
     <ul className="flex flex-col gap-4">
       {items.filter(canSee).map((nav, index) => (
         <li key={nav.name}>
+          {/* & Branch for collapsible menu items that have submenus. */}
+          {/* % Cabang untuk menu yang bisa collapse karena punya submenu. */}
           {nav.subItems ? (
             <button
               onClick={() => handleSubmenuToggle(index, menuType)}
@@ -366,6 +449,8 @@ const AppSidebar: React.FC = () => {
               )}
             </button>
           ) : (
+            // & Branch for direct-link menu items.
+            // % Cabang untuk item menu dengan tautan langsung.
             nav.path && (
               <Link
                 to={nav.path}
@@ -448,7 +533,8 @@ const AppSidebar: React.FC = () => {
     </ul>
   );
 
-  /** Renders a named section; returns null when no items are visible for current role */
+  // & Render section title + items; hide section when user has no visible items.
+  // % Render judul section + item; sembunyikan section jika user tidak punya item terlihat.
   const renderSection = (label: string, items: NavItem[], menuType: string) => {
     if (!items.some(canSee)) return null;
     return (
@@ -469,6 +555,8 @@ const AppSidebar: React.FC = () => {
     );
   };
 
+  // & Main sidebar container with responsive width and hover behavior.
+  // % Container utama sidebar dengan lebar responsif dan perilaku hover.
   return (
     <aside
       className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
@@ -489,10 +577,16 @@ const AppSidebar: React.FC = () => {
           !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
         }`}
       >
+        {/* & Brand logo switches between compact and expanded states. */}
+        {/* % Logo brand berganti antara mode ringkas dan mode melebar. */}
         <Link to="/admin">
           {isExpanded || isHovered || isMobileOpen ? (
             <>
-              <img
+
+            <h1 className="text-2xl font-bold text">
+              SENSIKU
+            </h1>
+              {/* <img
                 className="dark:hidden"
                 src="/images/logo/logo.svg"
                 alt="Logo"
@@ -505,7 +599,7 @@ const AppSidebar: React.FC = () => {
                 alt="Logo"
                 width={150}
                 height={40}
-              />
+              /> */}
             </>
           ) : (
             <img
@@ -519,6 +613,8 @@ const AppSidebar: React.FC = () => {
       </div>
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
         <nav className="mb-6">
+          {/* & Render main and grouped sections in intended order. */}
+          {/* % Render section utama dan section terkelompok sesuai urutan yang diinginkan. */}
           <div className="flex flex-col gap-4">
             <div>
               <h2
@@ -544,16 +640,27 @@ const AppSidebar: React.FC = () => {
               "jadwalKerja",
             )}
             {renderSection("Master Data Absensi", absensiItems, "absensi")}
-            {renderSection("Master Data Pengajuan", pengajuanItems, "pengajuan")}
+            {renderSection(
+              "Master Data Pengajuan",
+              pengajuanItems,
+              "pengajuan",
+            )}
             {renderSection(
               "Master Data Penilaian",
               penilaianItems,
               "penilaian",
             )}
+            {renderSection(
+              "Master Data Integritas",
+              integritasItems,
+              "integritas",
+            )}
             {renderSection("Master Data Keamanan", keamananItems, "keamanan")}
             {renderSection("Master Data Logs", logsItems, "logs")}
           </div>
         </nav>
+        {/* & Sidebar widget appears only when sidebar content area is visible. */}
+        {/* % Sidebar widget hanya muncul ketika area konten sidebar terlihat. */}
         {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null}
       </div>
     </aside>
