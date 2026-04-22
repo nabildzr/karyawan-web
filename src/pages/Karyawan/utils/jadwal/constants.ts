@@ -54,6 +54,16 @@ export const STATUS_STYLE: Record<WorkingScheduleMobileDayStatus, ScheduleStatus
     defaultDescription: "Status absensi tercatat tidak hadir.",
     showAlertIcon: true,
   },
+  ongoing: {
+    container: "border-green-300 bg-green-50",
+    dayText: "text-green-700",
+    titleText: "text-green-900",
+    bodyText: "text-green-800",
+    badge: "bg-green-100",
+    badgeText: "Berlangsung",
+    defaultDescription: "Status absensi tercatat hadir, check-out belum dilakukan.",
+    showAlertIcon: true,
+  },
   missed: {
     container: "border-red-300 bg-red-50",
     dayText: "text-red-700",

@@ -36,7 +36,7 @@ export default function UserDropdown() {
   const displayEmail = employeeProfile?.email ?? "-";
   const profilePicture =
     employeeProfile?.employeeDetails?.[0]?.profilePictureUrl ??
-    "/images/user/owner.jpg";
+    "https://i.pinimg.com/webp80/736x/b7/5b/29/b75b29441bbd967deda4365441497221.webp";
 
   return (
     <div className="relative">

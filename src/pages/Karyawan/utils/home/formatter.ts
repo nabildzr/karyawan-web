@@ -9,8 +9,7 @@ export function formatSubmissionTypeLabel(type?: string | null) {
   if (type === "IZIN_SAKIT") return "Izin Sakit";
   if (type === "IZIN_KHUSUS") return "Izin Khusus";
   if (type === "DINAS_LUAR") return "Dinas Luar";
-  if (type === "LEMBUR") return "Lembur";
-  if (type === "GANTI_SHIFT_HARI") return "Ganti Shift Hari";
+  // if (type === "GANTI_SHIFT_HARI") return "Ganti Shift Hari";
 
   // & Keep original value for unknown types to avoid losing information.
   // % Menjaga nilai asli untuk tipe yang tidak dikenal agar informasi tidak hilang.

@@ -6,12 +6,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import PageMeta from "../../../components/common/PageMeta";
 import { useAuthContext } from "../../../context/AuthContext";
-import { useAttendances } from "../../../hooks/useAttendances";
-import { useKaryawan } from "../../../hooks/useKaryawan";
-import { useSubmissions } from "../../../hooks/useSubmissions";
-import { karyawanService } from "../../../services/karyawan.service";
+import { dashboardService } from "../../../services/dashboard.service";
 import type { AttendanceStats } from "../../../types/attendances.types";
-import type { Employee } from "../../../types/karyawan.types";
+import type { AdminDashboardRecentAttendance } from "../../../types/dashboard.types";
 
 import AttendanceMetrics from "./AttendanceMetrics";
 import AttendanceRateGauge from "./AttendanceRateGauge";
@@ -20,18 +17,6 @@ import MonthlyAttendanceChart from "./MonthlyAttendanceChart";
 import RecentAttendance from "./RecentAttendance";
 
 const EMPTY_STATS: AttendanceStats = { present: 0, late: 0, absent: 0, leave: 0, total: 0 };
-
-/** Group employee[] ke { name, count }[] berdasarkan divisi. */
-function toDivisiStats(employees: Employee[]) {
-  const map = new Map<string, number>();
-  for (const emp of employees) {
-    const divName = emp.position?.division?.name ?? "Lainnya";
-    map.set(divName, (map.get(divName) ?? 0) + 1);
-  }
-  return Array.from(map.entries())
-    .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count);
-}
 
 export default function Home() {
   const navigate = useNavigate();
@@ -48,28 +33,79 @@ export default function Home() {
       weekday: "long", day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Jakarta",
     }), []);
 
-  // --- hooks ---
-  const { meta: karyawanMeta, fetchAll: fetchKaryawan } = useKaryawan();
-  const { stats, attendances, fetchStats, fetchAll: fetchAttendances } = useAttendances();
-  const { meta: subMeta, fetchAdmin: fetchSubmissions } = useSubmissions("admin");
-
-  const [allEmployees, setAllEmployees] = useState<Employee[]>([]);
+  const [stats, setStats] = useState<AttendanceStats>(EMPTY_STATS);
+  const [karyawanTotal, setKaryawanTotal] = useState(0);
+  const [pendingSubmissions, setPendingSubmissions] = useState(0);
+  const [divisiStats, setDivisiStats] = useState<
+    Array<{ name: string; count: number }>
+  >([]);
+  const [monthlyAttendance, setMonthlyAttendance] = useState<{
+    year: number;
+    present: number[];
+    late: number[];
+  } | null>(null);
+  const [recentAttendances, setRecentAttendances] = useState<
+    AdminDashboardRecentAttendance[]
+  >([]);
   const [loading, setLoading] = useState(true);
 
-  // --- load data ---
   useEffect(() => {
-    const jobs: Promise<unknown>[] = [];
-    if (canReadKaryawan)  jobs.push(fetchKaryawan({ page: 1, limit: 1 }));
-    if (canReadAbsensi)   jobs.push(fetchStats(), fetchAttendances({ page: 1, limit: 10 }));
-    if (canReadPengajuan) jobs.push(fetchSubmissions({ status: "PENDING", page: 1, limit: 1 }));
-    if (canReadDivisi)    jobs.push(karyawanService.getAll({ limit: 999 }).then((r) => setAllEmployees(r.data)).catch(() => {}));
+    let isMounted = true;
+    const shouldFetch =
+      canReadKaryawan || canReadAbsensi || canReadPengajuan || canReadDivisi;
 
-    Promise.allSettled(jobs).finally(() => setLoading(false));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!shouldFetch) {
+      setStats(EMPTY_STATS);
+      setKaryawanTotal(0);
+      setPendingSubmissions(0);
+      setDivisiStats([]);
+      setMonthlyAttendance(null);
+      setRecentAttendances([]);
+      setLoading(false);
+      return () => {
+        isMounted = false;
+      };
+    }
+
+    setLoading(true);
+
+    dashboardService
+      .getAdminOverview({ recentLimit: 10 })
+      .then((payload) => {
+        if (!isMounted) return;
+
+        setStats(payload.summary.attendance);
+        setKaryawanTotal(payload.summary.totalEmployees);
+        setPendingSubmissions(payload.summary.pendingSubmissions);
+        setDivisiStats(
+          payload.divisionDistribution.map((item) => ({
+            name: item.name,
+            count: item.employeeCount,
+          })),
+        );
+        setMonthlyAttendance(payload.monthlyAttendance);
+        setRecentAttendances(payload.recentAttendances);
+      })
+      .catch(() => {
+        if (!isMounted) return;
+
+        setStats(EMPTY_STATS);
+        setKaryawanTotal(0);
+        setPendingSubmissions(0);
+        setDivisiStats([]);
+        setMonthlyAttendance(null);
+        setRecentAttendances([]);
+      })
+      .finally(() => {
+        if (isMounted) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, [canReadKaryawan, canReadAbsensi, canReadPengajuan, canReadDivisi]);
-
-  // --- derived ---
-  const divisiStats = useMemo(() => toDivisiStats(allEmployees), [allEmployees]);
 
   return (
     <>
@@ -83,17 +119,29 @@ export default function Home() {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-xl font-bold">Dashboard Admin</h1>
-            <p className="text-sm text-gray-400">Ringkasan kehadiran karyawan · {todayLabel}</p>
+            <p className="text-sm text-gray-400">
+              Ringkasan kehadiran karyawan · {todayLabel}
+            </p>
           </div>
           <label className="flex items-center gap-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Portal</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">
+              Portal
+            </span>
             <select
               defaultValue="admin"
-              onChange={(e) => navigate(e.target.value === "karyawan" ? "/karyawan" : "/admin")}
+              onChange={(e) =>
+                navigate(e.target.value === "karyawan" ? "/karyawan" : "/admin")
+              }
               className="rounded-lg border border-white/20 bg-white/10 px-3 py-1.5 text-sm font-semibold text-white outline-none focus:border-white"
             >
-              {canAccessAdminPortal && <option value="admin" className="text-gray-900">Admin</option>}
-              <option value="karyawan" className="text-gray-900">Karyawan</option>
+              {canAccessAdminPortal && (
+                <option value="admin" className="text-gray-900">
+                  Admin
+                </option>
+              )}
+              <option value="karyawan" className="text-gray-900">
+                Karyawan
+              </option>
             </select>
           </label>
         </div>
@@ -105,14 +153,13 @@ export default function Home() {
         </div>
       ) : (
         <div className="grid grid-cols-12 gap-4 md:gap-6">
-
           {/* Metrics row */}
           {(canReadAbsensi || canReadKaryawan) && (
             <div className="col-span-12 xl:col-span-7">
               <AttendanceMetrics
                 stats={canReadAbsensi ? stats : EMPTY_STATS}
-                karyawanTotal={canReadKaryawan ? karyawanMeta.total : 0}
-                pendingSubmissions={canReadPengajuan ? subMeta.total : 0}
+                karyawanTotal={canReadKaryawan ? karyawanTotal : 0}
+                pendingSubmissions={canReadPengajuan ? pendingSubmissions : 0}
                 onViewPending={() => navigate("/admin/daftar-pengajuan")}
               />
             </div>
@@ -128,7 +175,10 @@ export default function Home() {
           {/* Bar chart */}
           {canReadAbsensi && (
             <div className="col-span-12 xl:col-span-7">
-              <MonthlyAttendanceChart />
+              <MonthlyAttendanceChart
+                presentData={monthlyAttendance?.present}
+                lateData={monthlyAttendance?.late}
+              />
             </div>
           )}
 
@@ -142,10 +192,9 @@ export default function Home() {
           {/* Recent attendance table */}
           {canReadAbsensi && (
             <div className="col-span-12">
-              <RecentAttendance records={attendances} />
+              <RecentAttendance records={recentAttendances} />
             </div>
           )}
-
         </div>
       )}
     </>

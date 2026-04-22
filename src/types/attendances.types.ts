@@ -18,8 +18,6 @@ export type SubmissionType =
   | "IZIN_SAKIT"
   | "IZIN_KHUSUS"
   | "DINAS_LUAR"
-  | "LEMBUR"
-  | "GANTI_SHIFT_HARI";
 
 export type SubmissionStatus = "PENDING" | "APPROVED" | "REJECTED";
 

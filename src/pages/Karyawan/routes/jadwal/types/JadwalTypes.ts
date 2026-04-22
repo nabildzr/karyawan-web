@@ -21,6 +21,11 @@ export interface ShiftScheduleItem {
   dateLabel: string;
   shiftName: string;
   shiftTime: string;
+  shiftStartTime: string | null;
+  shiftEndTime: string | null;
+  isCrossDay: boolean;
+  workDurationMinutes: number | null;
+  workDurationLabel: string | null;
   description: string;
   status: WorkingScheduleMobileDayStatus;
 }
@@ -56,6 +61,7 @@ export interface WeekSelectorProps {
 // % Mendefinisikan props untuk kartu jadwal.
 export interface ScheduleCardProps {
   item: ShiftScheduleItem;
+  onOpenDetail?: (item: ShiftScheduleItem) => void;
 }
 
 // & Define schedule list props with title and active week data.

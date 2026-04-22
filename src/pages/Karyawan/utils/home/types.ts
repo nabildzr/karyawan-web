@@ -15,9 +15,6 @@ export interface HomeMetrics {
   attendancePercent: string;
   attendanceHint: string;
   attendanceTone: CardTone;
-  overtime: string;
-  overtimeHint: string;
-  overtimeTone: CardTone;
 }
 
 // & Define lightweight card payload shape shown in the summary grid.

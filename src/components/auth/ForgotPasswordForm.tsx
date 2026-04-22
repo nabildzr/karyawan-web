@@ -32,10 +32,10 @@ export default function ForgotPasswordForm() {
     <div className="flex flex-col flex-1 w-full overflow-y-auto lg:w-1/2 no-scrollbar">
       <div className="w-full max-w-md pt-10 mx-auto">
         <Link
-          to="/admin/signin"
+          to="/"
           className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
         >
-          Kembali ke Sign In
+          Kembali
         </Link>
       </div>
 
@@ -46,7 +46,8 @@ export default function ForgotPasswordForm() {
               Forgot Password
             </h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Masukkan NIP atau email. Kode dan link reset password akan dikirim ke email terdaftar.
+              Masukkan NIP atau email. Kode dan link reset password akan dikirim
+              ke email terdaftar.
             </p>
           </div>
 
@@ -60,28 +61,33 @@ export default function ForgotPasswordForm() {
             {isSuccess && (
               <div className="rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-700 dark:border-green-800 dark:bg-green-900/20 dark:text-green-300">
                 <p>
-                  Permintaan diproses. Jika akun ditemukan, kode dan link reset password
-                  sudah dikirim ke email terdaftar.
+                  Permintaan diproses. Jika akun ditemukan, kode dan link reset
+                  password sudah dikirim ke email terdaftar.
                 </p>
                 {typeof data?.mailDispatched === "boolean" && (
                   <p className="mt-2">
-                    Status email (dev): {data.mailDispatched ? "terkirim" : "gagal/skip"}
+                    Status email (dev):{" "}
+                    {data.mailDispatched ? "terkirim" : "gagal/skip"}
                   </p>
                 )}
                 {data?.verificationCode && (
                   <p className="mt-2">
-                    Dev verification code: <span className="font-semibold">{data.verificationCode}</span>
+                    Dev verification code:{" "}
+                    <span className="font-semibold">
+                      {data.verificationCode}
+                    </span>
                   </p>
                 )}
                 {data?.resetToken && (
                   <p className="mt-2 break-all">
-                    Dev reset token: <span className="font-semibold">{data.resetToken}</span>
+                    Dev reset token:{" "}
+                    <span className="font-semibold">{data.resetToken}</span>
                   </p>
                 )}
                 {data?.resetToken && (
                   <p className="mt-2">
                     <Link
-                      to={`/admin/reset-password?token=${encodeURIComponent(data.resetToken)}`}
+                      to={`/auth/reset-password?token=${encodeURIComponent(data.resetToken)}`}
                       className="underline"
                     >
                       Lanjut ke halaman reset password
@@ -115,7 +121,12 @@ export default function ForgotPasswordForm() {
               )}
             </div>
 
-            <Button disabled={isPending} type="submit" className="w-full" size="sm">
+            <Button
+              disabled={isPending}
+              type="submit"
+              className="w-full"
+              size="sm"
+            >
               {isPending ? "Memproses..." : "Kirim Kode Verifikasi"}
             </Button>
           </form>

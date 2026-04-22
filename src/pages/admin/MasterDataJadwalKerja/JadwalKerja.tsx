@@ -2,7 +2,7 @@
 // & This file defines frontend UI or logic for JadwalKerja.tsx.
 // % File ini mendefinisikan UI atau logika frontend untuk JadwalKerja.tsx.
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import ComponentCard from "../../../components/common/ComponentCard";
 import ConfirmDeleteModal from "../../../components/common/ConfirmDeleteModal";
@@ -435,6 +435,18 @@ interface AssignModalProps {
 
 const ASSIGN_META_DEFAULT: PaginationMeta = { total: 0, page: 1, limit: 5, totalPages: 1 };
 
+function sortEmployeesByChecked(
+  list: Employee[],
+  selectedIds: Set<string>,
+): Employee[] {
+  return [...list].sort((a, b) => {
+    const aRank = selectedIds.has(a.id) ? 0 : 1;
+    const bRank = selectedIds.has(b.id) ? 0 : 1;
+    if (aRank !== bRank) return aRank - bRank;
+    return a.fullName.localeCompare(b.fullName, "id-ID");
+  });
+}
+
 function AssignModal({
   isOpen,
   onClose,
@@ -474,16 +486,31 @@ function AssignModal({
     }
   }, []);
 
+  const syncSelectedBySchedule = useCallback(async (targetScheduleId: string) => {
+    try {
+      const detail = await workingSchedulesService.getById(targetScheduleId);
+      setSelectedIds(new Set(detail.employees.map((emp) => emp.id)));
+    } catch {
+      setSelectedIds(new Set());
+      toast.error("Gagal memuat karyawan ter-assign untuk jadwal ini.");
+    }
+  }, []);
+
   // Reset when opened
   useEffect(() => {
     if (isOpen) {
       setCurrentScheduleId(scheduleId);
       setCurrentScheduleName(scheduleName);
-      setSelectedIds(new Set());
+      syncSelectedBySchedule(scheduleId);
       fetchEmployees({ page: 1, limit: 5, search: "" });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen, scheduleId]);
+  }, [isOpen, scheduleId, scheduleName, fetchEmployees, syncSelectedBySchedule]);
+
+  const sortedEmployees = useMemo(
+    () => sortEmployeesByChecked(employees, selectedIds),
+    [employees, selectedIds],
+  );
 
   const toggleEmployee = (id: string) => {
     setSelectedIds((prev) => {
@@ -589,7 +616,7 @@ function AssignModal({
         <div className="mb-4 max-h-96 overflow-y-auto">
           <DataTableOnline
             columns={empColumns}
-            data={employees}
+            data={sortedEmployees}
             meta={empMeta}
             loading={empLoading}
             showIndex={false}
@@ -625,7 +652,7 @@ function AssignModal({
         onConfirm={(newId, newName) => {
           setCurrentScheduleId(newId);
           setCurrentScheduleName(newName);
-          setSelectedIds(new Set());
+          syncSelectedBySchedule(newId);
           setGantiOpen(false);
           // Reload employees for new context
           fetchEmployees({ page: 1, limit: 5, search: "" });

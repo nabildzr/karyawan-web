@@ -82,6 +82,7 @@ export default function LeaderboardIntegritas() {
                   </thead>
                   <tbody className="divide-y divide-gray-50 dark:divide-gray-700/50">
                     {isTableLoading ? (
+                      // % Skeleton loading untuk 5 baris
                       Array.from({ length: 5 }).map((_, index) => (
                         <tr key={`skel-${index}`}>
                           {Array.from({ length: 4 }).map((__, innerIndex) => (
@@ -92,6 +93,7 @@ export default function LeaderboardIntegritas() {
                         </tr>
                       ))
                     ) : rest.length > 0 ? (
+                      // % Render data peserta di bawah peringkat 3
                       rest.map((entry, index) => {
                         const rank =
                           Number(entry.rank) ||

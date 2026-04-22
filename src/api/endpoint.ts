@@ -20,6 +20,9 @@ export const API_ENDPOINTS = {
   AUDIT_LOGS: {
     BASE: "/audit-logs",
   },
+  DASHBOARD: {
+    ADMIN: "/dashboard/admin",
+  },
   ATTENDANCES: {
     BASE: "/attendances",
     HISTORY: "/attendances/history",

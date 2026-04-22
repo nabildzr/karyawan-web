@@ -19,8 +19,6 @@ export const SUBMISSION_TYPE_LABEL_MAP: Record<string, string> = {
   IZIN_SAKIT: "izin sakit",
   IZIN_KHUSUS: "izin khusus",
   DINAS_LUAR: "dinas luar",
-  LEMBUR: "lembur",
-  GANTI_SHIFT_HARI: "ganti shift hari",
 };
 
 // & Centralize geolocation error messages so logic can stay clean and consistent.

@@ -52,6 +52,7 @@ export interface AssessmentDashboardStats {
 // % Type item daftar bawahan.
 export interface SubordinateEmployee {
   employeeId: string;
+  nip: string;
   fullName: string;
   position: string;
   division: string;

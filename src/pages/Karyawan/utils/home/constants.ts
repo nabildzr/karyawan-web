@@ -13,9 +13,6 @@ export const DEFAULT_METRICS: HomeMetrics = {
   attendancePercent: "0%",
   attendanceHint: "0 Hari Kerja",
   attendanceTone: "warning",
-  overtime: "0 Jam",
-  overtimeHint: "Bulan Ini",
-  overtimeTone: "gray",
 };
 
 // & Define quick-access employee menu cards shown on the home page.
@@ -31,7 +28,7 @@ export const MENU_CARDS: readonly HomeMenuCard[] = [
   },
   {
     title: "Pengajuan",
-    subtitle: "Cuti, izin, dan lembur",
+    subtitle: "Izin & Dinas Luar",
   },
   {
     title: "Review Saya",

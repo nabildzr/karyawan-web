@@ -58,8 +58,6 @@ function formatType(type: SubmissionType) {
   if (type === "IZIN_SAKIT") return "Izin Sakit";
   if (type === "IZIN_KHUSUS") return "Izin Khusus";
   if (type === "DINAS_LUAR") return "Dinas Luar";
-  if (type === "LEMBUR") return "Lembur";
-  if (type === "GANTI_SHIFT_HARI") return "Ganti Shift Hari";
   return type;
 }
 

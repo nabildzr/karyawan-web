@@ -54,6 +54,7 @@ import LineChart from "./pages/Charts/LineChart";
 import KaryawanAbsensi from "./pages/Karyawan/routes/absensi";
 import KaryawanAbsensiDetail from "./pages/Karyawan/routes/absensi/detail";
 import KaryawanAkun from "./pages/Karyawan/routes/akun";
+import KaryawanProfileDetail from "./pages/Karyawan/routes/akun/profile";
 import AttendanceCapturePage from "./pages/Karyawan/routes/attendanceFlow/CapturePage";
 import AttendanceProcessingPage from "./pages/Karyawan/routes/attendanceFlow/ProcessingPage";
 import AttendanceResultPage from "./pages/Karyawan/routes/attendanceFlow/ResultPage";
@@ -271,7 +272,10 @@ export default function App() {
                 </Route>
                 <Route
                   element={
-                    <ProtectedRoute requiredRoutePath="/admin/dompet-integritas" />
+                    <ProtectedRoute
+                      requiredPermissionKey="points_dashboard"
+                      requiredAction="READ"
+                    />
                   }
                 >
                   <Route
@@ -281,14 +285,20 @@ export default function App() {
                 </Route>
                 <Route
                   element={
-                    <ProtectedRoute requiredRoutePath="/admin/aturan-poin" />
+                    <ProtectedRoute
+                      requiredPermissionKey="points_rules"
+                      requiredAction="READ"
+                    />
                   }
                 >
                   <Route path="aturan-poin" element={<AturanPoin />} />
                 </Route>
                 <Route
                   element={
-                    <ProtectedRoute requiredRoutePath="/admin/item-marketplace" />
+                    <ProtectedRoute
+                      requiredPermissionKey="points_marketplace"
+                      requiredAction="READ"
+                    />
                   }
                 >
                   <Route
@@ -298,14 +308,20 @@ export default function App() {
                 </Route>
                 <Route
                   element={
-                    <ProtectedRoute requiredRoutePath="/admin/integrity-logs" />
+                    <ProtectedRoute
+                      requiredPermissionKey="points_logs"
+                      requiredAction="READ"
+                    />
                   }
                 >
                   <Route path="integrity-logs" element={<IntegrityLogs />} />
                 </Route>
                 <Route
                   element={
-                    <ProtectedRoute requiredRoutePath="/admin/leaderboard-integritas" />
+                    <ProtectedRoute
+                      requiredPermissionKey="points_leaderboard"
+                      requiredAction="READ"
+                    />
                   }
                 >
                   <Route
@@ -351,6 +367,10 @@ export default function App() {
                 <Route path="dompet" element={<KaryawanDompet />} />
                 <Route path="leaderboard" element={<KaryawanLeaderboard />} />
                 <Route path="akun" element={<KaryawanAkun />} />
+                <Route
+                  path="akun/profile"
+                  element={<KaryawanProfileDetail />}
+                />
                 <Route path="notifikasi" element={<NotifikasiKaryawan />} />
               </Route>
 
@@ -377,6 +397,11 @@ export default function App() {
                 element={<ForgotPassword />}
               />
               <Route path="/admin/reset-password" element={<ResetPassword />} />
+              <Route
+                path="/auth/forgot-password"
+                element={<ForgotPassword />}
+              />
+              <Route path="/auth/reset-password" element={<ResetPassword />} />
               <Route
                 path="/signin"
                 element={<Navigate to="/admin/signin" replace />}

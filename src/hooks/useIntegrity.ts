@@ -6,18 +6,18 @@ import { useCallback, useState } from "react";
 import type { IntegrityQueryParams } from "../services/integrity.service";
 import { integrityService } from "../services/integrity.service";
 import type {
-    BuyTokenResult,
-    CreateFlexibilityItemInput,
-    CreatePointRuleInput,
-    FlexibilityItem,
-    IntegrityPaginatedMeta,
-    LeaderboardEntry,
-    PointLedgerEntry,
-    PointRule,
-    UpdateFlexibilityItemInput,
-    UpdatePointRuleInput,
-    UserToken,
-    WalletBalance,
+  BuyTokenResult,
+  CreateFlexibilityItemInput,
+  CreatePointRuleInput,
+  FlexibilityItem,
+  IntegrityPaginatedMeta,
+  LeaderboardEntry,
+  PointLedgerEntry,
+  PointRule,
+  UpdateFlexibilityItemInput,
+  UpdatePointRuleInput,
+  UserToken,
+  WalletBalance,
 } from "../types/integrity.types";
 
 const DEFAULT_META: IntegrityPaginatedMeta = {
@@ -50,9 +50,7 @@ export function usePointRules() {
       setMeta(result.meta ?? DEFAULT_META);
       setQueryParams(params);
     } catch (err: unknown) {
-      setError(
-        err instanceof Error ? err.message : "Gagal memuat aturan poin",
-      );
+      setError(err instanceof Error ? err.message : "Gagal memuat aturan poin");
     } finally {
       setLoading(false);
     }
@@ -87,7 +85,7 @@ export function usePointRules() {
     const newPage =
       rules.length === 1 && queryParams.page && queryParams.page > 1
         ? queryParams.page - 1
-        : queryParams.page ?? 1;
+        : (queryParams.page ?? 1);
     await fetchAll({ ...queryParams, page: newPage });
   };
 
@@ -147,9 +145,7 @@ export function useFlexibilityItems() {
     await fetchAll(queryParams);
   }, [fetchAll, queryParams]);
 
-  const create = async (
-    input: CreateFlexibilityItemInput,
-  ): Promise<void> => {
+  const create = async (input: CreateFlexibilityItemInput): Promise<void> => {
     await integrityService.adminItems.create(input);
     await fetchAll({ ...queryParams, page: 1 });
   };
@@ -167,7 +163,7 @@ export function useFlexibilityItems() {
     const newPage =
       items.length === 1 && queryParams.page && queryParams.page > 1
         ? queryParams.page - 1
-        : queryParams.page ?? 1;
+        : (queryParams.page ?? 1);
     await fetchAll({ ...queryParams, page: newPage });
   };
 
@@ -199,6 +195,7 @@ export function useLeaderboard() {
     limit: 10,
   });
 
+  // % Fungsi utama untuk fetch data leaderboard dengan query params tertentu.
   const fetchAll = useCallback(async (params: IntegrityQueryParams) => {
     setLoading(true);
     setError(null);
@@ -208,14 +205,13 @@ export function useLeaderboard() {
       setMeta(result.meta ?? DEFAULT_META);
       setQueryParams(params);
     } catch (err: unknown) {
-      setError(
-        err instanceof Error ? err.message : "Gagal memuat leaderboard",
-      );
+      setError(err instanceof Error ? err.message : "Gagal memuat leaderboard");
     } finally {
       setLoading(false);
     }
   }, []);
 
+  // % Fungsi untuk menangani perubahan query params, seperti saat user mengganti halaman atau melakukan pencarian.
   const handleQueryChange = useCallback(
     (params: IntegrityQueryParams) => {
       fetchAll(params);
@@ -223,11 +219,20 @@ export function useLeaderboard() {
     [fetchAll],
   );
 
+  // % Fungsi untuk refetch data dengan queryParams saat ini, berguna setelah melakukan aksi seperti create/update/delete
   const refetch = useCallback(async () => {
     await fetchAll(queryParams);
   }, [fetchAll, queryParams]);
 
-  return { entries, meta, loading, error, fetchAll, handleQueryChange, refetch };
+  return {
+    entries,
+    meta,
+    loading,
+    error,
+    fetchAll,
+    handleQueryChange,
+    refetch,
+  };
 }
 
 // ========================================
@@ -244,6 +249,7 @@ export function useIntegrityLogs() {
     limit: 10,
   });
 
+  // % Fungsi utama untuk fetch data log integritas dengan query params tertentu.
   const fetchAll = useCallback(async (params: IntegrityQueryParams) => {
     setLoading(true);
     setError(null);
@@ -261,6 +267,7 @@ export function useIntegrityLogs() {
     }
   }, []);
 
+  // % Fungsi untuk menangani perubahan query params, seperti saat user mengganti halaman atau melakukan pencarian.
   const handleQueryChange = useCallback(
     (params: IntegrityQueryParams) => {
       fetchAll(params);
@@ -268,6 +275,7 @@ export function useIntegrityLogs() {
     [fetchAll],
   );
 
+  // % Fungsi untuk refetch data dengan queryParams saat ini, berguna setelah melakukan aksi seperti create/update/delete
   const refetch = useCallback(async () => {
     await fetchAll(queryParams);
   }, [fetchAll, queryParams]);
@@ -284,6 +292,7 @@ export function useMyWallet() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // % Fungsi untuk fetch saldo dompet user saat ini.
   const fetch = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -344,7 +353,15 @@ export function useMyLedger() {
     await fetchAll(queryParams);
   }, [fetchAll, queryParams]);
 
-  return { entries, meta, loading, error, fetchAll, handleQueryChange, refetch };
+  return {
+    entries,
+    meta,
+    loading,
+    error,
+    fetchAll,
+    handleQueryChange,
+    refetch,
+  };
 }
 
 // ========================================
@@ -416,7 +433,9 @@ export function useMyLeaderboard() {
       setQueryParams(params);
     } catch (err: unknown) {
       setError(
-        err instanceof Error ? err.message : "Gagal memuat leaderboard karyawan",
+        err instanceof Error
+          ? err.message
+          : "Gagal memuat leaderboard karyawan",
       );
     } finally {
       setLoading(false);
@@ -434,7 +453,15 @@ export function useMyLeaderboard() {
     await fetchAll(queryParams);
   }, [fetchAll, queryParams]);
 
-  return { entries, meta, loading, error, fetchAll, handleQueryChange, refetch };
+  return {
+    entries,
+    meta,
+    loading,
+    error,
+    fetchAll,
+    handleQueryChange,
+    refetch,
+  };
 }
 
 // ========================================
@@ -461,9 +488,7 @@ export function useMarketplace() {
       setMeta(result.meta ?? DEFAULT_META);
       setQueryParams(params);
     } catch (err: unknown) {
-      setError(
-        err instanceof Error ? err.message : "Gagal memuat marketplace",
-      );
+      setError(err instanceof Error ? err.message : "Gagal memuat marketplace");
     } finally {
       setLoading(false);
     }

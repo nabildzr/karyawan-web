@@ -115,24 +115,7 @@ export function deriveMetrics(data: MyAttendanceHistoryData): HomeMetrics {
   const attendancePercent =
     totalWorkDays > 0 ? Math.round((presentDays / totalWorkDays) * 100) : 0;
 
-  // & Aggregate positive overtime minutes from check-out vs expected check-out.
-  // % Mengakumulasi menit lembur positif dari selisih check-out aktual dan expected.
-  const totalOvertimeMinutes = sorted.reduce((sum, record) => {
-    if (!record.checkOut || !record.expectedCheckOutSnapshot) return sum;
-    const diffMinutes =
-      (new Date(record.checkOut).getTime() -
-        new Date(record.expectedCheckOutSnapshot).getTime()) /
-      60000;
-    return sum + Math.max(0, diffMinutes);
-  }, 0);
 
-  // & Convert overtime minutes into readable hour/minute text.
-  // % Mengonversi menit lembur menjadi teks jam/menit yang mudah dibaca.
-  const overtimeHours = totalOvertimeMinutes / 60;
-  const overtimeText =
-    overtimeHours >= 1
-      ? `${Number(overtimeHours.toFixed(1))} Jam`
-      : `${Math.round(totalOvertimeMinutes)} Menit`;
 
   // & Return normalized metric payload consumed by home summary cards.
   // % Mengembalikan payload metrik ternormalisasi yang dipakai kartu ringkasan beranda.
@@ -146,9 +129,6 @@ export function deriveMetrics(data: MyAttendanceHistoryData): HomeMetrics {
     attendancePercent: `${attendancePercent}%`,
     attendanceHint: `${totalWorkDays} Hari Kerja`,
     attendanceTone: attendancePercent >= 90 ? "success" : "warning",
-    overtime: totalOvertimeMinutes > 0 ? overtimeText : "0 Jam",
-    overtimeHint: "Bulan Ini",
-    overtimeTone: totalOvertimeMinutes > 0 ? "brand" : "gray",
   };
 }
 
@@ -177,12 +157,7 @@ export function buildSummaryCards(
       hint: loadingMetrics ? "Memuat..." : metrics.attendanceHint,
       tone: metrics.attendanceTone,
     },
-    {
-      label: "Lembur",
-      value: loadingMetrics ? "..." : metrics.overtime,
-      hint: loadingMetrics ? "Memuat..." : metrics.overtimeHint,
-      tone: metrics.overtimeTone,
-    },
+ 
   ];
 }
 

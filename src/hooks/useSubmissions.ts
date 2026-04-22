@@ -144,6 +144,15 @@ export function useSubmissions(mode: Mode = "mine") {
     return deleted;
   };
 
+  // & Retract own pending submission then refetch list.
+  // % Tarik kembali pengajuan milik sendiri lalu refetch daftar.
+  const retractSubmission = async (id: string): Promise<SubmissionRecord> => {
+    const retracted = await submissionsService.retractMine(id);
+
+    await refetch();
+    return retracted;
+  };
+
   // & Return state and actions for UI.
   // % Kembalikan state dan aksi untuk UI.
 
@@ -159,5 +168,6 @@ export function useSubmissions(mode: Mode = "mine") {
     createSubmission,
     updateSubmissionStatus,
     deleteSubmission,
+    retractSubmission,
   };
 }

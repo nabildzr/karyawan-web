@@ -2,7 +2,7 @@ import type { Column } from "../../../../../components/tables/DataTables/DataTab
 import type { LeaderboardEntry } from "../../../../../types/integrity.types";
 
 export const TOP_COUNT = 3;
-export const TABLE_PAGE_SIZE = 10;
+export const TABLE_PAGE_SIZE = 5;
 export const MAX_VISIBLE_PAGE_BUTTONS = 5;
 export const RECENT_LOG_LIMIT = 5;
 

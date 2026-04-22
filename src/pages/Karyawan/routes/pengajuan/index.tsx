@@ -63,6 +63,7 @@ const KaryawanPengajuanPage = () => {
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [submitting, setSubmitting] = useState(false);
+  const [retractingId, setRetractingId] = useState<string | null>(null);
   const [selectedAttachment, setSelectedAttachment] = useState<File | null>(
     null,
   );
@@ -75,8 +76,16 @@ const KaryawanPengajuanPage = () => {
     closeModal: closeCalendar,
   } = useModal();
 
-  const { submissions, meta, loading, error, fetchMine, createSubmission } =
-    useSubmissions("mine");
+  // mine adalah namespace untuk mengelola submission milik sendiri, terpisah dari admin yang bisa lihat semua submission
+  const {
+    submissions,
+    meta,
+    loading,
+    error,
+    fetchMine,
+    createSubmission,
+    retractSubmission,
+  } = useSubmissions("mine");
 
   // & This effect refetches submission history whenever page or status filter changes.
   // % Effect ini memuat ulang riwayat pengajuan setiap halaman atau filter status berubah.
@@ -268,11 +277,34 @@ const KaryawanPengajuanPage = () => {
     }
   };
 
+  // Tarik Kembali Pengajuan yang Masih PENDING dengan Konfirmasi
+  const handleRetractSubmission = async (item: SubmissionRecord) => {
+    const confirmed = window.confirm(
+      "Yakin ingin menarik kembali pengajuan ini?",
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    setRetractingId(item.id);
+    try {
+      await retractSubmission(item.id);
+      toast.success("Pengajuan berhasil ditarik kembali.");
+    } catch (err) {
+      toast.error(
+        err instanceof Error ? err.message : "Gagal menarik kembali pengajuan.",
+      );
+    } finally {
+      setRetractingId(null);
+    }
+  };
+
   return (
     <div className="min-h-full bg-gray-50 px-4 pb-28 pt-6">
       <HeaderSection
         title="Pengajuan"
-        description="Buat pengajuan izin, dinas luar, lembur, atau ganti shift hari."
+        description="Buat pengajuan izin, dinas luar, atau ganti shift hari."
       />
 
       {error && (
@@ -308,6 +340,8 @@ const KaryawanPengajuanPage = () => {
         setCurrentPage={setCurrentPage}
         pageNumbers={pageNumbers}
         openAttachmentPreview={openAttachmentPreview}
+        onRetract={handleRetractSubmission}
+        retractingId={retractingId}
       />
 
       {/* Date Selection Modal */}
@@ -326,9 +360,8 @@ const KaryawanPengajuanPage = () => {
         attachmentPreviewKind={attachmentPreviewKind}
         closeAttachmentPreview={closeAttachmentPreview}
       />
-
     </div>
   );
-};
+};;
 
 export default KaryawanPengajuanPage;

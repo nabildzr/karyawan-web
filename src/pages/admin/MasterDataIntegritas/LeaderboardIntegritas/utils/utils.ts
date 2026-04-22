@@ -1,6 +1,11 @@
-import { INTEGRITY_LEVELS, type LeaderboardEntry } from "../../../../../types/integrity.types";
+import {
+  INTEGRITY_LEVELS,
+  type LeaderboardEntry,
+} from "../../../../../types/integrity.types";
 import type { LevelDistributionItem } from "../types";
 
+// % Fungsi util untuk halaman Leaderboard
+// % Dapatkan Initials agar avatar bisa tampil dengan inisial nama karyawan. Contohnya "John Doe" → "JD", "Alice" → "A", "Bob Smith Jr." → "BS".
 export const getInitials = (name: string) =>
   name
     .split(" ")
@@ -9,6 +14,8 @@ export const getInitials = (name: string) =>
     .substring(0, 2)
     .toUpperCase();
 
+// % Konsistensi adalah persentase dari balance terhadap 5000 poin, dibatasi antara 0% hingga 100%.
+// % Perhitungannya adalah: (balance / 5000 alias maxPoints }) * 100 agar mendapatkan persentase, lalu dibulatkan ke angka terdekat dan dibatasi antara 0 dan 100.
 export const getConsistency = (balance: number) =>
   Math.max(0, Math.min(100, Math.round((balance / 5000) * 100)));
 
@@ -38,6 +45,9 @@ export const getLevelDistribution = (
   }).reverse();
 };
 
+// % Fungsi untuk membangun array halaman yang akan ditampilkan di pagination control. 
+// % Misalnya, jika totalPages=10, currentPage=5, dan maxVisibleButtons=5,
+// % maka fungsi ini akan menghasilkan [3, 4, 5, 6, 7].
 export const buildVisiblePages = (
   currentPage: number,
   totalPages: number,

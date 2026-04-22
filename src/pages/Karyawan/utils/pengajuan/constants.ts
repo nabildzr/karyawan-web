@@ -8,8 +8,6 @@ export const SUBMISSION_OPTIONS: Array<{ value: SubmissionType; label: string }>
   { value: "IZIN_SAKIT", label: "Izin Sakit" },
   { value: "IZIN_KHUSUS", label: "Izin Khusus" },
   { value: "DINAS_LUAR", label: "Dinas Luar" },
-  { value: "LEMBUR", label: "Lembur" },
-  { value: "GANTI_SHIFT_HARI", label: "Ganti Shift Hari" },
 ];
 
 // & Define status filter tabs/options used in submission history list.

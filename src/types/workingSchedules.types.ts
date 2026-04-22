@@ -93,6 +93,7 @@ export interface AssignEmployeesInput {
 export type WorkingScheduleMobileDayStatus =
   | "completed"
   | "absent"
+  | "ongoing"
   | "missed"
   | "off"
   | "upcoming";

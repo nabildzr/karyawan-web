@@ -7,6 +7,70 @@ import type {
 import { DATE_LABEL_FORMATTER, STATUS_STYLE } from "./constants";
 import { formatRangeLabel, getDayShort, parseIsoDate, toIsoDate } from "./formatter";
 
+function parseTimeToMinutes(time: string): number | null {
+  const parts = time.split(":");
+  if (parts.length < 2) {
+    return null;
+  }
+
+  const hours = Number(parts[0]);
+  const minutes = Number(parts[1]);
+
+  if (!Number.isFinite(hours) || !Number.isFinite(minutes)) {
+    return null;
+  }
+
+  if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+    return null;
+  }
+
+  return hours * 60 + minutes;
+}
+
+function formatDuration(minutes: number): string {
+  const hoursPart = Math.floor(minutes / 60);
+  const minutesPart = minutes % 60;
+
+  if (minutesPart === 0) {
+    return `${hoursPart} jam`;
+  }
+
+  return `${hoursPart} jam ${minutesPart} menit`;
+}
+
+function calculateShiftDuration(
+  startTime?: string,
+  endTime?: string,
+  isCrossDay?: boolean,
+): { minutes: number; label: string } | null {
+  if (!startTime || !endTime) {
+    return null;
+  }
+
+  const startMinutes = parseTimeToMinutes(startTime);
+  const endMinutes = parseTimeToMinutes(endTime);
+
+  if (startMinutes === null || endMinutes === null) {
+    return null;
+  }
+
+  let totalMinutes = endMinutes - startMinutes;
+
+  // Shift lintas hari atau endTime lebih kecil dianggap melewati tengah malam.
+  if (isCrossDay || totalMinutes < 0) {
+    totalMinutes += 24 * 60;
+  }
+
+  if (totalMinutes <= 0) {
+    return null;
+  }
+
+  return {
+    minutes: totalMinutes,
+    label: formatDuration(totalMinutes),
+  };
+}
+
 function getWeekAnchor(date: Date) {
   // & Clone date so original reference is not mutated.
   // % Menyalin tanggal agar referensi asli tidak termutasi.
@@ -23,7 +87,9 @@ function getWeekAnchor(date: Date) {
   return anchor;
 }
 
-function mapDayToScheduleItem(day: WorkingScheduleMobileDaySummary): ShiftScheduleItem {
+function mapDayToScheduleItem(
+  day: WorkingScheduleMobileDaySummary,
+): ShiftScheduleItem {
   // & Parse ISO date string for day number and localized date label generation.
   // % Parsing string tanggal ISO untuk membuat nomor hari dan label tanggal lokal.
   const date = parseIsoDate(day.date);
@@ -31,7 +97,8 @@ function mapDayToScheduleItem(day: WorkingScheduleMobileDaySummary): ShiftSchedu
   // & Resolve shift name fallback based on upcoming/off status when shift is missing.
   // % Menentukan fallback nama shift berdasarkan status upcoming/off saat data shift kosong.
   const shiftName =
-    day.shift?.name ?? (day.status === "upcoming" ? "Shift belum diatur" : "Off Day");
+    day.shift?.name ??
+    (day.status === "upcoming" ? "Shift belum diatur" : "Off Day");
 
   // & Resolve shift time text with cross-day indicator or descriptive fallback.
   // % Menentukan teks jam shift dengan indikator lintas hari atau fallback deskriptif.
@@ -40,6 +107,12 @@ function mapDayToScheduleItem(day: WorkingScheduleMobileDaySummary): ShiftSchedu
     : day.status === "upcoming"
       ? "Menunggu pengaturan jam kerja"
       : "Tidak ada jam kerja";
+
+  const shiftDuration = calculateShiftDuration(
+    day.shift?.startTime,
+    day.shift?.endTime,
+    day.shift?.isCrossDay,
+  );
 
   // & Build normalized card item used by schedule list components.
   // % Menyusun item kartu ternormalisasi yang dipakai komponen daftar jadwal.
@@ -50,7 +123,13 @@ function mapDayToScheduleItem(day: WorkingScheduleMobileDaySummary): ShiftSchedu
     dateLabel: DATE_LABEL_FORMATTER.format(date),
     shiftName,
     shiftTime,
-    description: day.note?.trim() || STATUS_STYLE[day.status].defaultDescription,
+    shiftStartTime: day.shift?.startTime ?? null,
+    shiftEndTime: day.shift?.endTime ?? null,
+    isCrossDay: Boolean(day.shift?.isCrossDay),
+    workDurationMinutes: shiftDuration?.minutes ?? null,
+    workDurationLabel: shiftDuration?.label ?? null,
+    description:
+      day.note?.trim() || STATUS_STYLE[day.status].defaultDescription,
     status: day.status,
   };
 }

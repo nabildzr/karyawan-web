@@ -28,6 +28,7 @@ type NavItem = {
   icon: React.ReactNode;
   path?: string;
   requiredAction?: PermissionAction;
+  requiredPermissionKey?: string;
   // & If provided, item appears only for listed roles.
   // % Jika diisi, item hanya muncul untuk role yang ada di daftar.
   roles?: UserRole[];
@@ -229,26 +230,31 @@ const integritasItems: NavItem[] = [
     icon: <BoxCubeIcon />,
     name: "Dompet Integritas",
     path: adminPath("/dompet-integritas"),
+    requiredPermissionKey: "points_dashboard",
   },
   {
     icon: <ListIcon />,
     name: "Aturan Poin",
     path: adminPath("/aturan-poin"),
+    requiredPermissionKey: "points_rules",
   },
   {
     icon: <GridIcon />,
     name: "Item Marketplace",
     path: adminPath("/item-marketplace"),
+    requiredPermissionKey: "points_marketplace",
   },
   {
     icon: <TableIcon />,
     name: "Integrity Logs",
     path: adminPath("/integrity-logs"),
+    requiredPermissionKey: "points_logs",
   },
   {
     icon: <PieChartIcon />,
     name: "Leaderboard",
     path: adminPath("/leaderboard-integritas"),
+    requiredPermissionKey: "points_leaderboard",
   },
 ];
 
@@ -307,13 +313,20 @@ const menuGroups: { type: string; items: NavItem[] }[] = [
 
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
-  const { user, hasRole, hasRoutePermission } = useAuthContext();
+  const { user, hasRole, hasRoutePermission, hasPermission } = useAuthContext();
   const location = useLocation();
 
   /** True jika item boleh dilihat user saat ini */
   const canSee = useCallback(
     (item: NavItem) => {
       if (!user) return false;
+
+      if (item.requiredPermissionKey) {
+        return hasPermission(
+          item.requiredPermissionKey,
+          item.requiredAction ?? "READ",
+        );
+      }
 
       if (item.path) {
         return hasRoutePermission(item.path, item.requiredAction ?? "READ");
@@ -325,7 +338,7 @@ const AppSidebar: React.FC = () => {
 
       return hasRole(item.roles);
     },
-    [hasRole, hasRoutePermission, user],
+    [hasPermission, hasRole, hasRoutePermission, user],
   );
 
   // & Store expanded submenu identity and measured submenu heights.

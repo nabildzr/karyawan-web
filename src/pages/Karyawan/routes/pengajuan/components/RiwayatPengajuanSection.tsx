@@ -1,25 +1,33 @@
 // * This file defines route module logic for src/pages/Karyawan/routes/pengajuan/components/RiwayatPengajuanSection.tsx.
 
+import { Trash2 } from "lucide-react";
 import {
   SubmissionPaginatedMeta,
   SubmissionRecord,
   SubmissionStatus,
 } from "../../../../../types/submissions.types";
 import { STATUS_FILTERS } from "../../../utils/pengajuan/constants";
-import { formatDate, formatFileSize, formatType } from "../../../utils/pengajuan/formatter";
+import {
+  formatDate,
+  formatFileSize,
+  formatType,
+} from "../../../utils/pengajuan/formatter";
 
 type RiwayatPengajuanSectionProps = {
   submissions: SubmissionRecord[];
   meta: SubmissionPaginatedMeta;
   loading: boolean;
   activeFilter: SubmissionStatus | "ALL";
-  setActiveFilter: React.Dispatch<React.SetStateAction<SubmissionStatus | "ALL">>;
+  setActiveFilter: React.Dispatch<
+    React.SetStateAction<SubmissionStatus | "ALL">
+  >;
   currentPage: number;
   setCurrentPage: (page: number) => void;
   pageNumbers: number[];
   openAttachmentPreview: (item: SubmissionRecord) => void;
+  onRetract: (item: SubmissionRecord) => void;
+  retractingId: string | null;
 };
-
 
 // & This function defines statusBadgeClass behavior in the route flow.
 // % Fungsi ini mendefinisikan perilaku statusBadgeClass dalam alur route.
@@ -41,9 +49,10 @@ const RiwayatPengajuanSection = ({
   setActiveFilter,
   currentPage,
   setCurrentPage,
-  // statusBadgeClass,
   openAttachmentPreview,
   pageNumbers,
+  onRetract,
+  retractingId,
 }: RiwayatPengajuanSectionProps) => {
   // & Process the main execution steps of RiwayatPengajuanSection inside this function body.
   // % Memproses langkah eksekusi utama RiwayatPengajuanSection di dalam body fungsi ini.
@@ -96,11 +105,26 @@ const RiwayatPengajuanSection = ({
                     {formatDate(item.startDate)} - {formatDate(item.endDate)}
                   </p>
                 </div>
-                <span
-                  className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${statusBadgeClass(item.status)}`}
-                >
-                  {item.status}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${statusBadgeClass(item.status)}`}
+                  >
+                    {item.status}
+                  </span>
+                  {item.status === "PENDING" && (
+                    <button
+                      type="button"
+                      onClick={() => onRetract(item)}
+                      disabled={retractingId === item.id}
+                      className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold transition ${retractingId === item.id ? "cursor-not-allowed bg-error-400 text-white/80" : "bg-error-500 text-white hover:bg-error-600"}`}
+                    >
+                      <Trash2 size={10} />
+                      {retractingId === item.id
+                        ? "Menarik..."
+                        : "Tarik kembali"}
+                    </button>
+                  )}
+                </div>
               </div>
 
               <p className="mt-2 text-xs leading-5 text-gray-600">
@@ -140,9 +164,7 @@ const RiwayatPengajuanSection = ({
             <div className="flex items-center gap-1">
               <button
                 type="button"
-                onClick={() =>
-                  setCurrentPage(Math.max(1, currentPage - 1))
-                }
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                 disabled={currentPage <= 1}
                 className="rounded-md border border-gray-200 px-2.5 py-1 text-[11px] font-semibold text-gray-700 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
               >
@@ -167,7 +189,9 @@ const RiwayatPengajuanSection = ({
               <button
                 type="button"
                 onClick={() =>
-                  setCurrentPage(Math.min(Math.max(meta.totalPages, 1), currentPage + 1))
+                  setCurrentPage(
+                    Math.min(Math.max(meta.totalPages, 1), currentPage + 1),
+                  )
                 }
                 disabled={currentPage >= Math.max(meta.totalPages, 1)}
                 className="rounded-md border border-gray-200 px-2.5 py-1 text-[11px] font-semibold text-gray-700 hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"

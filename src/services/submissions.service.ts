@@ -128,4 +128,13 @@ export const submissionsService = {
     );
     return res.data.data;
   },
+
+  // & Retract own pending submission.
+  // % Tarik kembali pengajuan milik sendiri yang masih PENDING.
+  retractMine: async (id: string): Promise<SubmissionRecord> => {
+    const res = await apiClient.delete<ApiResponse<SubmissionRecord>>(
+      `/submissions/${id}/retract`,
+    );
+    return res.data.data;
+  },
 };

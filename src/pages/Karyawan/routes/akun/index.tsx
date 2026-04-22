@@ -1,7 +1,9 @@
 // * This file defines route module logic for src/pages/Karyawan/routes/akun/index.tsx.
 
 import { getAkunPageDescription, getAkunProfileHint } from "../../utils/akun/content";
+import AkunChangePasswordCard from "./components/AkunChangePasswordCard";
 import AkunHeader from "./components/AkunHeader";
+import AkunLogoutButton from "./components/AkunLogoutButton";
 import AkunNotificationSettings from "./components/AkunNotificationSettings";
 import AkunProfileCard from "./components/AkunProfileCard";
 
@@ -15,6 +17,8 @@ const KaryawanAkunPage = () => {
       <AkunHeader title="Akun" description={getAkunPageDescription()} />
       <AkunProfileCard title="Profil karyawan" hint={getAkunProfileHint()} />
       <AkunNotificationSettings />
+      <AkunChangePasswordCard />
+      <AkunLogoutButton />
     </div>
   );
 };

@@ -10,10 +10,10 @@ import {
   TableHeader,
   TableRow,
 } from "../../../components/ui/table";
-import type { AttendanceRecord } from "../../../types/attendances.types";
+import type { AdminDashboardRecentAttendance } from "../../../types/dashboard.types";
 
 interface Props {
-  records: AttendanceRecord[];
+  records: AdminDashboardRecentAttendance[];
 }
 
 const STATUS_COLOR = {
@@ -21,6 +21,7 @@ const STATUS_COLOR = {
   LATE: "warning",
   ABSENT: "error",
   LEAVE: "info",
+  OFF: "light",
 } as const;
 
 const STATUS_LABEL: Record<string, string> = {
@@ -28,6 +29,7 @@ const STATUS_LABEL: Record<string, string> = {
   LATE: "Terlambat",
   ABSENT: "Alpa",
   LEAVE: "Izin/Cuti",
+  OFF: "Libur",
 };
 
 function fmt(iso?: string | null): string {

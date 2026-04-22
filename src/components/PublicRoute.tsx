@@ -9,12 +9,23 @@
 // % Kalau belum login → render halaman yang diminta (signin, signup, dll)
 // & ============================================================
 
-import { Navigate, Outlet } from "react-router";
+import { Navigate, Outlet, useLocation } from "react-router";
 import { useAuthContext } from "../context/AuthContext";
 
 export function PublicRoute() {
   const { isAuthenticated, isLoading, user } = useAuthContext();
+  const location = useLocation();
   const currentRole = user?.role ?? user?.rbacRoleKey ?? null;
+  const pathname = location.pathname.replace(/\/+$/, "") || "/";
+  const passwordRecoveryPaths = new Set([
+    "/admin/forgot-password",
+    "/admin/reset-password",
+    "/auth/forgot-password",
+    "/auth/reset-password",
+    "/forgot-password",
+    "/reset-password",
+  ]);
+  const canBypassAuthRedirect = passwordRecoveryPaths.has(pathname);
 
   // % Tunggu dulu sampai selesai cek session ke backend
   // % Biar gak flicker redirect pas pertama load
@@ -26,9 +37,11 @@ export function PublicRoute() {
     );
   }
 
-  // % Kalau sudah login → tendang ke dashboard
-  if (isAuthenticated) {
-    return <Navigate to={currentRole === "USER" ? "/karyawan" : "/admin"} replace />;
+  // % Kalau sudah login → tendang ke dashboard, kecuali halaman recovery password
+  if (isAuthenticated && !canBypassAuthRedirect) {
+    return (
+      <Navigate to={currentRole === "USER" ? "/karyawan" : "/admin"} replace />
+    );
   }
 
   // % Belum login → render halaman publik (signin/signup)

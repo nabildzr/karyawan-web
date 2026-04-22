@@ -1,8 +1,8 @@
 // * Dashboard widget: grafik batang absensi bulanan per-bulan.
 // * Renamed & rethemed from MonthlySalesChart.tsx.
 
-import Chart from "react-apexcharts";
 import type { ApexOptions } from "apexcharts";
+import Chart from "react-apexcharts";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
 
@@ -12,10 +12,18 @@ interface Props {
   lateData?: number[];
 }
 
+const normalizeSeries = (values?: number[]) => {
+  const series = Array(12).fill(0);
+  values?.slice(0, 12).forEach((value, index) => {
+    series[index] = Number(value) || 0;
+  });
+  return series;
+};
+
 export default function MonthlyAttendanceChart({ presentData, lateData }: Props) {
   const series = [
-    { name: "Hadir", data: presentData ?? Array(12).fill(0) },
-    { name: "Terlambat", data: lateData ?? Array(12).fill(0) },
+    { name: "Hadir", data: normalizeSeries(presentData) },
+    { name: "Terlambat", data: normalizeSeries(lateData) },
   ];
 
   const options: ApexOptions = {

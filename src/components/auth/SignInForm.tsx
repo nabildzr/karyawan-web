@@ -148,7 +148,7 @@ export default function SignInForm() {
 
                 <div className="flex items-center justify-between">
                   <Link
-                    to="/admin/forgot-password"
+                    to="/auth/forgot-password"
                     className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
                   >
                     Lupa password? Reset password di sini.
