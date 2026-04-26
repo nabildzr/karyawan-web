@@ -15,5 +15,6 @@ export const NAV_ITEMS: readonly KaryawanBottomNavItem[] = [
   { to: "/karyawan/review", label: "Review", end: false },
   { to: "/karyawan/dompet", label: "Dompet", end: false },
   { to: "/karyawan/jadwal", label: "Jadwal", end: false },
+  { to: "/karyawan/helpdesk", label: "Help", end: false },
   { to: "/karyawan/akun", label: "Akun", end: false },
 ];

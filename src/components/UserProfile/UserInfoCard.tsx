@@ -2,12 +2,12 @@
 // & This file defines frontend UI or logic for UserInfoCard.tsx.
 // % File ini mendefinisikan UI atau logika frontend untuk UserInfoCard.tsx.
 
+import { useAuthContext } from "../../context/AuthContext";
 import { useModal } from "../../hooks/useModal";
-import { Modal } from "../ui/modal";
-import Button from "../ui/button/Button";
 import Input from "../form/input/InputField";
 import Label from "../form/Label";
-import { useAuthContext } from "../../context/AuthContext";
+import Button from "../ui/button/Button";
+import { Modal } from "../ui/modal";
 
 export default function UserInfoCard() {
   const { isOpen, openModal, closeModal } = useModal();
@@ -59,8 +59,6 @@ export default function UserInfoCard() {
                 {displayPhoneNumber}
               </p>
             </div>
-
-         
           </div>
         </div>
 
@@ -109,26 +107,26 @@ export default function UserInfoCard() {
                     <Label>Facebook</Label>
                     <Input
                       type="text"
-                      value="https://www.facebook.com/PimjoHQ"
+                      value="https://www.facebook.com/c10xor"
                     />
                   </div>
 
                   <div>
                     <Label>X.com</Label>
-                    <Input type="text" value="https://x.com/PimjoHQ" />
+                    <Input type="text" value="https://x.com/nabildzikrika" />
                   </div>
 
                   <div>
                     <Label>Linkedin</Label>
                     <Input
                       type="text"
-                      value="https://www.linkedin.com/company/pimjo"
+                      value="https://www.linkedin.com/in/nabildzr"
                     />
                   </div>
 
                   <div>
                     <Label>Instagram</Label>
-                    <Input type="text" value="https://instagram.com/PimjoHQ" />
+                    <Input type="text" value="https://instagram.com/nabildzr" />
                   </div>
                 </div>
               </div>
@@ -140,7 +138,7 @@ export default function UserInfoCard() {
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                   <div className="col-span-2 lg:col-span-1">
                     <Label>First Name</Label>
-                    <Input type="text" value="Musharof" />
+                    <Input type="text" value="Nabil" />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">
@@ -150,7 +148,7 @@ export default function UserInfoCard() {
 
                   <div className="col-span-2 lg:col-span-1">
                     <Label>Email Address</Label>
-                    <Input type="text" value="randomuser@pimjo.com" />
+                    <Input type="text" value="example@mail.com" />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">

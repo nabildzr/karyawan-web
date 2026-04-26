@@ -258,6 +258,23 @@ const integritasItems: NavItem[] = [
   },
 ];
 
+// & Helpdesk administration section.
+// % Section administrasi helpdesk.
+const helpdeskItems: NavItem[] = [
+  {
+    icon: <PlugInIcon />,
+    name: "Helpdesk Ticket",
+    path: adminPath("/helpdesk"),
+    requiredPermissionKey: "helpdesk_operator",
+  },
+  {
+    icon: <PieChartIcon />,
+    name: "Helpdesk Dashboard",
+    path: adminPath("/helpdesk/dashboard"),
+    requiredPermissionKey: "helpdesk_dashboard",
+  },
+];
+
 // & Ordered menu registry used by active-submenu sync logic.
 // % Registri menu berurutan yang dipakai logika sinkronisasi submenu aktif.
 const menuGroups: { type: string; items: NavItem[] }[] = [
@@ -269,6 +286,7 @@ const menuGroups: { type: string; items: NavItem[] }[] = [
   { type: "pengajuan", items: pengajuanItems },
   { type: "penilaian", items: penilaianItems },
   { type: "integritas", items: integritasItems },
+  { type: "helpdesk", items: helpdeskItems },
   { type: "laporan", items: laporanItems },
   { type: "logs", items: logsItems },
   { type: "keamanan", items: keamananItems },
@@ -668,6 +686,7 @@ const AppSidebar: React.FC = () => {
               integritasItems,
               "integritas",
             )}
+            {renderSection("Master Data Helpdesk", helpdeskItems, "helpdesk")}
             {renderSection("Master Data Keamanan", keamananItems, "keamanan")}
             {renderSection("Master Data Logs", logsItems, "logs")}
           </div>

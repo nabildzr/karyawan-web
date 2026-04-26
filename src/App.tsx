@@ -67,6 +67,12 @@ import NotifikasiKaryawan from "./pages/Karyawan/routes/notifikasi";
 import KaryawanPengajuan from "./pages/Karyawan/routes/pengajuan";
 import KaryawanReview from "./pages/Karyawan/routes/review";
 import LandingPage from "./pages/LandingPage/LandingPage";
+import CreateTicketPage from "./pages/Helpdesk/CreateTicketPage";
+import UserTicketListPage from "./pages/Helpdesk/UserTicketListPage";
+import UserTicketDetailPage from "./pages/Helpdesk/UserTicketDetailPage";
+import OperatorTicketListPage from "./pages/Helpdesk/OperatorTicketListPage";
+import OperatorTicketDetailPage from "./pages/Helpdesk/OperatorTicketDetailPage";
+import HelpdeskDashboardPage from "./pages/admin/Helpdesk/HelpdeskDashboardPage";
 
 // ============================================================
 // Setup QueryClient
@@ -329,6 +335,34 @@ export default function App() {
                     element={<LeaderboardIntegritas />}
                   />
                 </Route>
+
+                {/* ── Helpdesk (OPERATOR/ADMIN) ── */}                <Route
+                  element={
+                    <ProtectedRoute
+                      requiredPermissionKey="helpdesk_operator"
+                      requiredAction="READ"
+                    />
+                  }
+                >
+                  <Route path="helpdesk" element={<OperatorTicketListPage />} />
+                  <Route
+                    path="helpdesk/:id"
+                    element={<OperatorTicketDetailPage />}
+                  />
+                </Route>
+                <Route
+                  element={
+                    <ProtectedRoute
+                      requiredPermissionKey="helpdesk_dashboard"
+                      requiredAction="READ"
+                    />
+                  }
+                >
+                  <Route
+                    path="helpdesk/dashboard"
+                    element={<HelpdeskDashboardPage />}
+                  />
+                </Route>
               </Route>
             </Route>
 
@@ -372,6 +406,29 @@ export default function App() {
                   element={<KaryawanProfileDetail />}
                 />
                 <Route path="notifikasi" element={<NotifikasiKaryawan />} />
+
+                {/* ── Helpdesk (USER) ── */}
+                {/* tambahkan rou */}                <Route
+                  element={
+                    <ProtectedRoute
+                      requiredPermissionKey="employee_helpdesk"
+                      requiredAction="READ"
+                    />
+                  }
+                >
+                  <Route path="helpdesk" element={<UserTicketListPage />} />
+                  <Route path="helpdesk/:id" element={<UserTicketDetailPage />} />
+                </Route>
+                <Route
+                  element={
+                    <ProtectedRoute
+                      requiredPermissionKey="employee_helpdesk"
+                      requiredAction="CREATE"
+                    />
+                  }
+                >
+                  <Route path="helpdesk/create" element={<CreateTicketPage />} />
+                </Route>
               </Route>
 
               <Route
@@ -441,3 +498,9 @@ export default function App() {
     </QueryClientProvider>
   );
 }
+
+
+
+
+
+

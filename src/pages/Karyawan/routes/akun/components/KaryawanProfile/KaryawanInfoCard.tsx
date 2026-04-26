@@ -56,26 +56,24 @@ export default function KaryawanInfoCard() {
                 {displayPhoneNumber}
               </p>
             </div>
-         
+
             <div>
               <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
                 Join Date
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
                 {new Date(displayJoinDate).toLocaleDateString("id-ID", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    second: "2-digit",
-                    timeZoneName: "short",
-                    weekday: "long",
-                  })}
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                  timeZoneName: "short",
+                  weekday: "long",
+                })}
               </p>
             </div>
-
-         
           </div>
         </div>
 
@@ -124,26 +122,26 @@ export default function KaryawanInfoCard() {
                     <Label>Facebook</Label>
                     <Input
                       type="text"
-                      value="https://www.facebook.com/PimjoHQ"
+                      value="https://www.facebook.com/c10xor"
                     />
                   </div>
 
                   <div>
                     <Label>X.com</Label>
-                    <Input type="text" value="https://x.com/PimjoHQ" />
+                    <Input type="text" value="https://x.com/c10xor" />
                   </div>
 
                   <div>
                     <Label>Linkedin</Label>
                     <Input
                       type="text"
-                      value="https://www.linkedin.com/company/pimjo"
+                      value="https://www.linkedin.com/company/c10xor"
                     />
                   </div>
 
                   <div>
                     <Label>Instagram</Label>
-                    <Input type="text" value="https://instagram.com/PimjoHQ" />
+                    <Input type="text" value="https://instagram.com/c10xor" />
                   </div>
                 </div>
               </div>
@@ -165,7 +163,7 @@ export default function KaryawanInfoCard() {
 
                   <div className="col-span-2 lg:col-span-1">
                     <Label>Email Address</Label>
-                    <Input type="text" value="randomuser@pimjo.com" />
+                    <Input type="text" value="randomuser@c10xor.com" />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">
